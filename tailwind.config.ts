@@ -11,8 +11,28 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+
+        "brown": "#D87D4A",
+        "light-brown": "#FBAF85",
+        "secondary-black": "#101010",
+        "gray": "#F1F1F1",
+        "light-gray": "#FAFAFA",
       },
     },
   },
+  safelist: [
+    {
+      pattern: /^text-/, 
+    },
+    {
+      pattern: /^bg-/, 
+    },
+    {
+      pattern: /^border-/,
+    },
+    {
+      pattern: /^stroke-/,
+    },
+  ],
   plugins: [],
 } satisfies Config;
