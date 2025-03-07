@@ -1,0 +1,38 @@
+"use client"
+
+import Button from '@/components/Button'
+import Paragraph from '@/components/Paragraph'
+import Title from '@/components/Title'
+import useDeviceSize from '@/hooks/use-device-size'
+import Image from 'next/image'
+import React from 'react'
+
+export default function Hero() {
+  const { currSize } = useDeviceSize();
+
+  return (
+    <section className="flex justify-center lg:justify-start">
+      <div className='bg-[#191919] w-full h-[700px] absolute -top-5 -z-10 md:h-[729px] md:top-0'>
+        <Image
+          src={`/assets/home/${currSize}/image-header.jpg`}
+          alt='black headphones'
+          fill
+          className='object-cover object-center mix-blend-normal brightness-[65%]'
+          priority
+        />
+      </div>
+      <div className='my-[108px] mx-[24px] text-center text-white md:max-w-[379px] lg:mx-0 lg:text-start lg:ml-lg-custom xl:ml-xl-custom'>
+        <div className='opacity-50 text-[14px] tracking-[10px] uppercase'>New Product</div>
+        <Title 
+          variant='extra' text='XX99 Mark II Headphones' 
+          className='mt-[16px] mb-[24px] md:mt-[24px]'
+        />
+        <Paragraph 
+          text='Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.' 
+          className='opacity-75'  
+        />
+        <Button className='mx-auto mt-[28px] md:mt-[40px] lg:mx-0'>See Product</Button>
+      </div>
+    </section>
+  )
+}

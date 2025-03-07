@@ -21,6 +21,13 @@ export default {
         "error": "#CD2C2C",
         "input": "#CFCFCF",
       },
+      spacing: {
+        'lg-custom': '80px',
+        'xl-custom': '165px',
+      },
+      screens: {
+        'xl-1440': '1440px', // Custom breakpoint for 1440px
+      },
     },
   },
   safelist: [
