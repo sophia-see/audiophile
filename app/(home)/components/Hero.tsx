@@ -12,12 +12,12 @@ export default function Hero() {
 
   return (
     <section className="flex justify-center lg:justify-start xl:max-w-[1100px] xl:mx-auto">
-      <div className='bg-[#191919] w-full h-[700px] absolute left-0 right-0 -top-5 -z-10 md:h-[729px] md:top-0'>
+      <div className='bg-[#191919] brightness-[65%] w-full h-[700px] absolute left-0 right-0 -top-5 -z-10 md:h-[729px] md:top-0'>
         <Image
           src={`/assets/home/${currSize}/image-header.jpg`}
           alt='black headphones'
           fill
-          className='object-cover object-center mix-blend-normal brightness-[65%]'
+          className='object-cover object-center mix-blend-normal xl:mx-auto xl:max-w-[1440px]'
           priority
         />
       </div>
