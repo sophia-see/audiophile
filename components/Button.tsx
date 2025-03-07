@@ -29,6 +29,7 @@ export default function Button(props: ButtonProps) {
   return (
     <button
       className={`
+        transition duration-300
         flex items-center gap-[13.32px]
         py-[15px] pl-[31.5px] pr-[29.5px]
         font-bold text-[13px] leading-auto tracking-[1px] uppercase
