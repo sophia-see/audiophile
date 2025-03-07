@@ -1,8 +1,8 @@
 "use client"
 
-import Button from '@/components/Button'
-import Paragraph from '@/components/Paragraph'
-import Title from '@/components/Title'
+import Button from '@/components/ui/Button'
+import Paragraph from '@/components/ui/Paragraph'
+import Title from '@/components/ui/Title'
 import useDeviceSize from '@/hooks/use-device-size'
 import Image from 'next/image'
 import React from 'react'
@@ -11,7 +11,7 @@ export default function Hero() {
   const { currSize } = useDeviceSize();
 
   return (
-    <section className="flex justify-center lg:justify-start xl:max-w-[1100px] xl:mx-auto">
+    <section className="flex justify-center lg:justify-start xl:max-w-[1100px] xl:mx-auto h-[calc(700px-90px)] md:h-[calc(729px-90px)]">
       <div className='bg-[#191919] brightness-[65%] w-full h-[700px] absolute left-0 right-0 -top-5 -z-10 md:h-[729px] md:top-0'>
         <Image
           src={`/assets/home/${currSize}/image-header.jpg`}
