@@ -11,8 +11,8 @@ export default function Hero() {
   const { currSize } = useDeviceSize();
 
   return (
-    <section className="flex justify-center lg:justify-start">
-      <div className='bg-[#191919] w-full h-[700px] absolute -top-5 -z-10 md:h-[729px] md:top-0'>
+    <section className="flex justify-center lg:justify-start xl:max-w-[1100px] xl:mx-auto">
+      <div className='bg-[#191919] w-full h-[700px] absolute left-0 right-0 -top-5 -z-10 md:h-[729px] md:top-0'>
         <Image
           src={`/assets/home/${currSize}/image-header.jpg`}
           alt='black headphones'
@@ -21,7 +21,15 @@ export default function Hero() {
           priority
         />
       </div>
-      <div className='my-[108px] mx-[24px] text-center text-white md:max-w-[379px] lg:mx-0 lg:text-start lg:ml-lg-custom xl:ml-xl-custom'>
+      <div 
+        className={`
+          my-[108px] mx-[24px] 
+          text-center text-white 
+          md:max-w-[379px] 
+          lg:mx-0 lg:text-start lg:ml-lg-custom 
+          xl:mx-0
+        `}
+        >
         <div className='opacity-50 text-[14px] tracking-[10px] uppercase'>New Product</div>
         <Title 
           variant='extra' text='XX99 Mark II Headphones' 
