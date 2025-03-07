@@ -29,19 +29,23 @@ export default function Categories() {
   return (
     <section className='my-[96px] flex flex-col gap-[68px] mx-4 md:flex-row md:gap-[10px] xl:max-w-[1100px] xl:mx-auto'>
       {CATEGORIES.map(({ name, image, path }) => (
-        <div
+        <motion.div
           key={name}
           className={`
             w-full relative cursor-pointer 
             pt-[52px]
+            group
           `}
           onClick={() => redirect(path)}
+          whileHover="hover"
         >
           <div className='absolute top-0 left-1/2 -translate-x-1/2'>
             <motion.div 
-              className="w-[150px] h-[150px] origin-bottom"
+              className="w-[150px] h-[150px] origin-bottom group-hover:scale-[103%]"
               initial={{ scale: 1 }}
-              whileHover={{ scale: 1.3 }}
+              variants={{ 
+                hover: {scale: 1.3}
+              }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
             >
               <Image 
@@ -59,7 +63,7 @@ export default function Categories() {
               <Button variant="ghost" icon={ChevronRight} className=''>Shop</Button>
             </div>
           </div>
-        </div>
+        </motion.div>
       ))}
     </section>
   )
