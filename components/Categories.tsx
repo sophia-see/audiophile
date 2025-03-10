@@ -25,9 +25,18 @@ const CATEGORIES = [
   },
 ]
 
-export default function Categories() {
+interface CategoriesProps {
+  className?: string;
+}
+
+export default function Categories({className}: CategoriesProps) {
   return (
-    <section className='my-[96px] flex flex-col gap-[68px] mx-4 md:flex-row md:gap-[10px] xl:max-w-[1100px] xl:mx-auto'>
+    <div 
+      className={`
+        pt-[40px] flex flex-col gap-[16px] mx-4 md:py-[96px] md:flex-row md:gap-[10px] lg:py-[120px] xl:gap-[30px] xl:max-w-[1100px] xl:mx-auto
+        ${className || ""}
+      `}
+    >
       {CATEGORIES.map(({ name, image, path }) => (
         <motion.div
           key={name}
@@ -65,6 +74,6 @@ export default function Categories() {
           </div>
         </motion.div>
       ))}
-    </section>
+    </div>
   )
 }

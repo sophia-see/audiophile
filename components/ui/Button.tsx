@@ -5,7 +5,7 @@ import React, { ElementType } from 'react';
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
   children?: React.ReactNode;
-  variant?: "default" | "outline" | "ghost";
+  variant?: "default" | "outline" | "ghost" | "black";
   icon?: ElementType;
   iconColor?: string;
   iconSize?: number;
@@ -25,6 +25,7 @@ export default function Button(props: ButtonProps) {
   const isDefault = variant === "default";
   const isOutline = variant === "outline";
   const isGhost = variant === "ghost";
+  const isBlack = variant === "black";
 
   return (
     <button
@@ -34,6 +35,7 @@ export default function Button(props: ButtonProps) {
         py-[15px] pl-[31.5px] pr-[29.5px]
         font-bold text-[13px] leading-auto tracking-[1px] uppercase
         ${isDefault ? "bg-brown text-white border-none hover:bg-light-brown" : ""}
+        ${isBlack ? "bg-black text-white border-none hover:bg-light-black" : ""}
         ${isOutline ? "bg-transparent text-black border border-black hover:bg-black hover:text-white" : ""}
         ${isGhost ? "bg-transparent text-black/50 border-none hover:text-brown" : ""}
         ${className || ""}  

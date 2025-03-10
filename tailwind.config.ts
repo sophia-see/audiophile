@@ -17,6 +17,7 @@ export default {
         "secondary-black": "#101010",
         "gray": "#F1F1F1",
         "light-gray": "#FAFAFA",
+        "light-black": "#4C4C4C",
 
         "error": "#CD2C2C",
         "input": "#CFCFCF",

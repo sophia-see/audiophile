@@ -5,6 +5,9 @@ import React from 'react'
 import Logo from './Logo'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
+import { AnimatePresence, motion } from "framer-motion";
+import Categories from '../Categories'
+import { useAppContext } from '@/contexts/AppContext'
 
 const LINKS = [
   { name: 'Home', href: '/' },
@@ -30,12 +33,15 @@ function NavLinks () {
 }
 
 export default function Header() {
+  const { isMenuOpen, setIsMenuOpen } = useAppContext();
   const pathname = usePathname();
   const isHome = pathname === '/';
 
   return (
     <header
       className={`
+          relative
+
         ${isHome ? "" : "bg-black"} 
       `}
     >
@@ -45,12 +51,39 @@ export default function Header() {
           flex items-center justify-between md:justify-start md:gap-[42px] xl:gap-[197px]
           border-b-[1px] border-white/10
           xl:px-0 xl:max-w-[1100px] xl:mx-auto
+          relative
         `}
       >
-        <MenuIcon className='stroke-white lg:hidden'/>
+        <MenuIcon className='stroke-white lg:hidden' onClick={() => setIsMenuOpen(!isMenuOpen)}/>
         <Logo />
         <NavLinks />
         <ShoppingCartIcon className='stroke-white md:ml-auto'/>
+        <AnimatePresence>
+          {isMenuOpen && (
+            <>
+              
+              <motion.div
+                className="absolute top-full left-0 right-0 origin-top z-50 backdrop-brightness-10"
+                initial={{ opacity: 0, scaleY: 0 }}
+                animate={{ opacity: 1, scaleY: 1 }}
+                exit={{ opacity: 0, scaleY: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }} 
+              >
+                <div 
+                  className={`
+                    w-full rounded-b-[8px]
+                    flex flex-col items-center justify-center
+                    bg-white py-8 px-6 md:py-14 md:px-10
+                  `}
+                >
+                  <Categories className='w-full my-0 mx-0 py-0 gap-[16px] md:py-0'/>
+                </div>
+              </motion.div>
+            
+            </>
+          )}
+
+        </AnimatePresence>
       </div>
     </header>
   )
