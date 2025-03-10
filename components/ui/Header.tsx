@@ -4,7 +4,6 @@ import { MenuIcon, ShoppingCartIcon } from 'lucide-react'
 import React from 'react'
 import Logo from './Logo'
 import { usePathname } from 'next/navigation'
-import Link from 'next/link'
 import { AnimatePresence, motion } from "framer-motion";
 import Categories from '../Categories'
 import { useAppContext } from '@/contexts/AppContext'
