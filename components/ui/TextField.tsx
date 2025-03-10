@@ -3,14 +3,14 @@
 import React from 'react'
 
 interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  className?: string;
+  // className?: string;
   error?: string | null;
   label?: string;
 }
 
 export default function TextField(props: TextFieldProps) {
   const {
-    className,
+    // className,
     error,
     label,
     ...rest

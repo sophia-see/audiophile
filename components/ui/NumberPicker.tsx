@@ -17,10 +17,22 @@ export default function NumberPicker(props: NumberPickerProps) {
     className,
   } = props;
 
+  const isMax = max == value;
+  const isMin = min == value;
+
   return (
-    <div className='w-fit flex items-center bg-gray gap-[5px] py-[15px] font-bold text-[13px] tracking-[1px]'>
+    <div 
+      className={`
+        w-fit 
+        flex items-center gap-[5px]
+        bg-gray py-[15px] 
+        font-bold text-[13px] tracking-[1px]
+        ${className || ""}
+      `}
+    >
       <div 
         className='cursor-pointer px-[15.5px] opacity-25 hover:opacity-100 hover:text-brown'
+        onClick={() => !isMin && setValue(value - 1)}
       >
         -
       </div>
@@ -29,6 +41,7 @@ export default function NumberPicker(props: NumberPickerProps) {
       </div>
       <div 
         className='cursor-pointer px-[15.5px] opacity-25 hover:opacity-100 hover:text-brown'
+        onClick={() => !isMax && setValue(value + 1)}
       >
         +
       </div>
