@@ -1,7 +1,7 @@
 import React from 'react'
 
 interface TitleProps {
-  text: string;
+  text: string | React.ReactNode;
   variant?: "default" | "extra";
   className?: string;
 }

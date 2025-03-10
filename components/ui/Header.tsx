@@ -4,33 +4,11 @@ import { MenuIcon, ShoppingCartIcon } from 'lucide-react'
 import React from 'react'
 import Logo from './Logo'
 import { usePathname } from 'next/navigation'
-import Link from 'next/link'
 import { AnimatePresence, motion } from "framer-motion";
 import Categories from '../Categories'
 import { useAppContext } from '@/contexts/AppContext'
+import NavLinks from './NavLinks'
 
-const LINKS = [
-  { name: 'Home', href: '/' },
-  { name: 'Headphones', href: '/headphones' },
-  { name: 'Speakers', href: '/speakers' },
-  { name: 'Earphones', href: '/earphones' },
-]
-
-function NavLinks () {
-  return (
-    <ul className='hidden lg:flex gap-[34px]'>
-      {LINKS.map(({ name, href }) => (
-        <Link
-          key={name}
-          href={href}
-          className={`text-white font-bold text-[13px] leading-[25px] tracking-[2px] uppercase hover:text-brown transition duration-300`}
-        >
-          <li>{name}</li>
-        </Link>
-      ))}
-    </ul>
-  )
-}
 
 export default function Header() {
   const { isMenuOpen, setIsMenuOpen } = useAppContext();
@@ -56,7 +34,7 @@ export default function Header() {
       >
         <MenuIcon className='stroke-white lg:hidden' onClick={() => setIsMenuOpen(!isMenuOpen)}/>
         <Logo />
-        <NavLinks />
+        <NavLinks className='hidden lg:flex gap-[34px] '/>
         <ShoppingCartIcon className='stroke-white md:ml-auto'/>
         <AnimatePresence>
           {isMenuOpen && (
