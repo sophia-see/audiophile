@@ -28,16 +28,16 @@ export default function Products() {
           xl-1440:px-[95px]
         `}
       >
-        <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[558px] h-[558px] aspect-square">
+        <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[558px] h-[558px] aspect-square lg:top-[-10%] lg:left-0 lg:translate-x-[-15%] lg:w-[944px] lg:h-[944px]">
           <Image
             src={"/assets/home/desktop/pattern-circles.svg"}
             alt="circles"
             width={600}
             height={600}
-            className="w-[558px] h-[558px] aspect-square"
+            className="w-[558px] h-[558px] lg:w-[944px] lg:h-[944px] aspect-square"
           />
         </div>
-        <div className='z-10 w-[172px] h-[200px] relative md:w-[197px] md:h-[237px] lg:w-[310px] lg:h-[393px] xl-1440:w-[410px] xl-1440:h-[493px] lg:absolute lg:left-1/2 lg:-translate-x-[110%] lg:top-1/2 lg:-translate-y-1/2 xl-1440:top-[102%] xl-1440:-translate-y-full'>
+        <div className='z-10 w-[172px] h-[200px] relative md:w-[197px] md:h-[237px] lg:w-[310px] lg:h-[393px] xl-1440:w-[410px] xl-1440:h-[493px] lg:absolute lg:left-1/2 lg:-translate-x-[110%] lg:top-1/2 lg:-translate-y-1/2 xl-1440:-translate-x-full xl-1440:top-[102%] xl-1440:-translate-y-full'>
           <Image
             src={"/assets/home/desktop/image-speaker-zx9.png"}
             alt='ZX9 Speaker'
