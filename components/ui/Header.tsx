@@ -1,6 +1,6 @@
 "use client"
 
-import { MenuIcon, ShoppingCartIcon } from 'lucide-react'
+import { MenuIcon, ShoppingCartIcon, UserIcon } from 'lucide-react'
 import React from 'react'
 import Logo from './Logo'
 import { usePathname } from 'next/navigation'
@@ -26,7 +26,7 @@ export default function Header() {
       <div
         className={`
           py-8 px-6 md:px-10
-          flex items-center justify-between md:justify-start md:gap-[42px] xl:gap-[197px]
+          flex items-center gap-4 md:gap-[42px] xl:gap-[197px]
           border-b-[1px] border-white/10
           xl:px-0 xl:max-w-[1100px] xl:mx-auto
           relative
@@ -35,7 +35,10 @@ export default function Header() {
         <MenuIcon className='stroke-white lg:hidden' onClick={() => setIsMenuOpen(!isMenuOpen)}/>
         <Logo />
         <NavLinks className='hidden lg:flex gap-[34px] '/>
-        <ShoppingCartIcon className='stroke-white md:ml-auto'/>
+        <div className='flex items-center gap-4 ml-auto'>
+          <ShoppingCartIcon className='stroke-white'/>
+          <UserIcon className='stroke-white'/>
+        </div>
         <AnimatePresence>
           {isMenuOpen && (
             <>
@@ -60,7 +63,6 @@ export default function Header() {
             
             </>
           )}
-
         </AnimatePresence>
       </div>
     </header>
