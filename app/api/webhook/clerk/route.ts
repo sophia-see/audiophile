@@ -1,14 +1,14 @@
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { clerkClient, WebhookEvent } from '@clerk/nextjs/server'
-import { createUser } from '@/lib/actions/user.actions'
+import { createUser, deleteUser, updateUser } from '@/lib/actions/user.actions'
 import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {
   const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET
 
   if (!WEBHOOK_SECRET) {
-    throw new Error('Error: Please add SIGNING_SECRET from Clerk Dashboard to .env or .env')
+    throw new Error('Error: Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env')
   }
 
   // Create new Svix instance with secret
@@ -47,9 +47,6 @@ export async function POST(req: Request) {
     })
   }
 
-  // Do something with payload
-  // For this guide, log payload to console
-  // const { id } = evt.data
   const eventType = evt.type
   
   console.log({eventType})
@@ -82,28 +79,26 @@ export async function POST(req: Request) {
     return NextResponse.json({message: "OK", user: newUser})
   }
 
-  // if (eventType === 'user.updated') {
-  //   const {id, image_url, first_name, last_name, username } = evt.data
+  if (eventType === 'user.updated') {
+    const {id, first_name, last_name } = evt.data
 
-  //   const user = {
-  //     firstName: first_name!,
-  //     lastName: last_name!,
-  //     username: username!,
-  //     photo: image_url,
-  //   }
+    const user = {
+      firstName: first_name!,
+      lastName: last_name!,
+    }
 
-  //   const updatedUser = await updateUser(id, user)
+    const updatedUser = await updateUser(id, user)
 
-  //   return NextResponse.json({ message: 'OK', user: updatedUser })
-  // }
+    return NextResponse.json({ message: 'OK', user: updatedUser })
+  }
 
-  // if (eventType === 'user.deleted') {
-  //   const { id } = evt.data
+  if (eventType === 'user.deleted') {
+    const { id } = evt.data
 
-  //   const deletedUser = await deleteUser(id!)
+    const deletedUser = await deleteUser(id!)
 
-  //   return NextResponse.json({ message: 'OK', user: deletedUser })
-  // }
+    return NextResponse.json({ message: 'OK', user: deletedUser })
+  }
 
   return new Response('', { status: 200 })
 }

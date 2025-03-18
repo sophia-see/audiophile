@@ -1,6 +1,6 @@
 "use client"
 
-import { MenuIcon, ShoppingCartIcon, UserIcon } from 'lucide-react'
+import { MenuIcon, Package, ShoppingCartIcon, UserIcon } from 'lucide-react'
 import React from 'react'
 import Logo from './Logo'
 import { usePathname } from 'next/navigation'
@@ -8,7 +8,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Categories from '../Categories'
 import { useAppContext } from '@/contexts/AppContext'
 import NavLinks from './NavLinks'
-import { SignedIn, SignedOut } from '@clerk/nextjs'
+import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import Link from 'next/link'
 
 
@@ -42,9 +42,19 @@ export default function Header() {
             <ShoppingCartIcon className='stroke-white hover:stroke-brown'/>
           </Link>  
           <SignedIn>
-            <Link href={"/profile"}>            
-              <UserIcon className='stroke-white hover:stroke-brown'/>
-            </Link>          </SignedIn>
+              {/* <UserIcon className='stroke-white hover:stroke-brown'/> */}
+              <UserButton>
+                <UserButton.MenuItems>
+                  <UserButton.Link
+                    label="My Orders"
+                    labelIcon={<Package size={14}/>}
+                    href="/my-orders"
+                  />
+                  <UserButton.Action label="manageAccount"/>
+                  <UserButton.Action label="signOut" />
+                </UserButton.MenuItems>
+              </UserButton>
+          </SignedIn>
           <SignedOut>
             <Link href={"/sign-in"}>            
               <UserIcon className='stroke-white hover:stroke-brown'/>
