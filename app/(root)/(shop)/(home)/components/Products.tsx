@@ -6,7 +6,7 @@ import Title from '@/components/ui/Title'
 import useDeviceSize from '@/hooks/use-device-size'
 import Image from 'next/image'
 import React from 'react'
-
+import { motion } from "framer-motion"
 export default function Products() {
   const { currSize } = useDeviceSize();
 
@@ -15,42 +15,65 @@ export default function Products() {
       className='py-[120px] flex flex-col gap-6 mx-6 md:py-[96px] md:mx-[40px] md:gap-8 lg:mx-lg-custom lg:py-[168px] xl:mx-auto xl:max-w-[1100px]'
     >
       {/* first item */}
-      <div 
-        className={`
-          relative 
-          py-[55px] px-[24px] 
-          flex flex-col items-center gap-8 
-          text-white bg-brown 
-          rounded-[8px] 
-          overflow-hidden
-          md:pt-[52px] md:pb-[64px] md:gap-[64px] 
-          lg:flex-row lg:pb-0 lg:px-[40px]
-          xl-1440:px-[95px]
-        `}
+      <motion.div
+      className={`
+        relative 
+        py-[55px] px-[24px] 
+        flex flex-col items-center gap-8 
+        text-white bg-brown 
+        rounded-[8px] 
+        overflow-hidden
+        md:pt-[52px] md:pb-[64px] md:gap-[64px] 
+        lg:flex-row lg:pb-0 lg:px-[40px]
+        xl-1440:px-[95px]
+      `}
+      whileHover="hovering" // Triggers the hover animation
+    >
+      {/* Background Circle - Pulsing Animation on Hover */}
+      <motion.div
+        className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[558px] h-[558px] aspect-square lg:top-[-10%] lg:left-0 lg:translate-x-[-15%] lg:w-[944px] lg:h-[944px]"
+        initial={{ scale: 1}}
+        variants={{
+          hovering: {
+            scale: [1, 1.1, 1], // Scale up and down
+            transition: {
+              duration: 1.5, // Time for one pulse
+              repeat: Infinity, // Repeat indefinitely
+              repeatType: "reverse", // Smooth scaling effect
+              ease: "easeInOut", // Smooth transition
+            },
+          },
+        }}
       >
-        <div className="absolute top-[-20%] left-1/2 -translate-x-1/2 w-[558px] h-[558px] aspect-square lg:top-[-10%] lg:left-0 lg:translate-x-[-15%] lg:w-[944px] lg:h-[944px]">
-          <Image
-            src={"/assets/home/desktop/pattern-circles.svg"}
-            alt="circles"
-            width={600}
-            height={600}
-            className="w-[558px] h-[558px] lg:w-[944px] lg:h-[944px] aspect-square"
-          />
-        </div>
-        <div className='z-10 w-[172px] h-[200px] relative md:w-[197px] md:h-[237px] lg:w-[310px] lg:h-[393px] xl-1440:w-[410px] xl-1440:h-[493px] lg:absolute lg:left-1/2 lg:-translate-x-[110%] lg:top-1/2 lg:-translate-y-1/2 xl-1440:-translate-x-full xl-1440:top-[102%] xl-1440:-translate-y-full'>
-          <Image
-            src={"/assets/home/desktop/image-speaker-zx9.png"}
-            alt='ZX9 Speaker'
-            fill
-            className='aspect-auto'
-          />
-        </div>
-        <div className='z-10 flex flex-col items-center gap-6 text-center md:max-w-[349px] lg:ml-auto lg:text-start lg:items-start lg:pt-[100px] lg:pb-[90px] xl-1440:pt-[133px] xl-1440:pb-[124px]'>
-          <Title variant='extra' text='ZX9 SPEAKER' />
-          <Paragraph className='opacity-75' text='Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.' />
-          <Button variant='black' className='mt-[40px]'>See Product</Button>
-        </div>
+        <Image
+          src={"/assets/home/desktop/pattern-circles.svg"}
+          alt="circles"
+          width={600}
+          height={600}
+          className="w-[558px] h-[558px] lg:w-[944px] lg:h-[944px] aspect-square"
+        />
+      </motion.div>
+
+      <div className="z-10 w-[172px] h-[200px] relative md:w-[197px] md:h-[237px] lg:w-[310px] lg:h-[393px] xl-1440:w-[410px] xl-1440:h-[493px] lg:absolute lg:left-1/2 lg:-translate-x-[110%] lg:top-1/2 lg:-translate-y-1/2 xl-1440:-translate-x-full xl-1440:top-[102%] xl-1440:-translate-y-full">
+        <Image
+          src={"/assets/home/desktop/image-speaker-zx9.png"}
+          alt="ZX9 Speaker"
+          fill
+          className="aspect-auto"
+        />
       </div>
+
+      <div className="z-10 flex flex-col items-center gap-6 text-center md:max-w-[349px] lg:ml-auto lg:text-start lg:items-start lg:pt-[100px] lg:pb-[90px] xl-1440:pt-[133px] xl-1440:pb-[124px]">
+        <Title variant="extra" text="ZX9 SPEAKER" />
+        <Paragraph
+          className="opacity-75"
+          text="Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound."
+        />
+        <Button variant="black" className="mt-[40px]">
+          See Product
+        </Button>
+      </div>
+    </motion.div>
 
       {/* second item */}
       <div className='w-full h-[327px] relative rounded-[8px] overflow-hidden'>
