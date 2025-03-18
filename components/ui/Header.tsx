@@ -10,6 +10,7 @@ import { useAppContext } from '@/contexts/AppContext'
 import NavLinks from './NavLinks'
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs'
 import Link from 'next/link'
+import CustomUserButton from './CustomUserButton'
 
 
 export default function Header() {
@@ -43,8 +44,8 @@ export default function Header() {
           </Link>  
           <SignedIn>
               {/* <UserIcon className='stroke-white hover:stroke-brown'/> */}
-              <UserButton>
-                <UserButton.MenuItems>
+              <CustomUserButton />
+                {/* <UserButton.MenuItems>
                   <UserButton.Link
                     label="My Orders"
                     labelIcon={<Package size={14}/>}
@@ -52,8 +53,8 @@ export default function Header() {
                   />
                   <UserButton.Action label="manageAccount"/>
                   <UserButton.Action label="signOut" />
-                </UserButton.MenuItems>
-              </UserButton>
+                </UserButton.MenuItems> */}
+              {/* </CustomUserButton> */}
           </SignedIn>
           <SignedOut>
             <Link href={"/sign-in"}>            

@@ -73,7 +73,7 @@ export async function POST(req: Request) {
         publicMetadata: {
           userId: newUser._id
         }
-      })
+      });
     }
 
     return NextResponse.json({message: "OK", user: newUser})
