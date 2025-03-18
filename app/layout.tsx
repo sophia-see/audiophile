@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/ui/Header";
 import { AppProvider } from "@/contexts/AppContext";
-import Footer from "@/components/ui/Footer";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -20,16 +19,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${manrope.className} antialiased`}
-      >
-        <AppProvider>
-          <Header />
-          {children}
-          <Footer />
-        </AppProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body
+          className={`${manrope.className} antialiased`}
+        >
+          <AppProvider>
+            {children}
+          </AppProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

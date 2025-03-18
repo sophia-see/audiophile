@@ -8,6 +8,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import Categories from '../Categories'
 import { useAppContext } from '@/contexts/AppContext'
 import NavLinks from './NavLinks'
+import { SignedIn, SignedOut } from '@clerk/nextjs'
+import Link from 'next/link'
 
 
 export default function Header() {
@@ -36,8 +38,18 @@ export default function Header() {
         <Logo />
         <NavLinks className='hidden lg:flex gap-[34px] '/>
         <div className='flex items-center gap-4 ml-auto'>
-          <ShoppingCartIcon className='stroke-white'/>
-          <UserIcon className='stroke-white'/>
+          <Link href={"/cart"}>            
+            <ShoppingCartIcon className='stroke-white hover:stroke-brown'/>
+          </Link>  
+          <SignedIn>
+            <Link href={"/profile"}>            
+              <UserIcon className='stroke-white hover:stroke-brown'/>
+            </Link>          </SignedIn>
+          <SignedOut>
+            <Link href={"/sign-in"}>            
+              <UserIcon className='stroke-white hover:stroke-brown'/>
+            </Link>
+          </SignedOut>
         </div>
         <AnimatePresence>
           {isMenuOpen && (
