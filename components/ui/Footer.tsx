@@ -46,7 +46,7 @@ export default function Footer() {
   return (
     <div>
       {!isCart && (
-        <div className='flex flex-col gap-10 mb-[120px] mx-6 lg:flex-row lg:justify-between lg:items-center lg:mx-lg-custom xl:max-w-[1100px] xl:mx-auto'>
+        <div className='flex flex-col gap-10 mb-[120px] mx-6 md:mx-[40px] lg:flex-row lg:justify-between lg:items-center lg:mx-lg-custom xl:max-w-[1100px] xl:mx-auto'>
           <div className='w-full h-[300px] relative overflow-hidden rounded-[8px] lg:order-last lg:flex-shrink-0 lg:w-[440px] lg:h-[488px] xl:w-[540px] xl:h-[588px]'>
             <Image
               src={`/assets/shared/${currSize}/image-best-gear.jpg`}

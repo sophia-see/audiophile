@@ -50,6 +50,7 @@ interface ItemCardProps {
   description: string;
   isNew?: boolean;
   currSize: string;
+  isImageFirst?: boolean;
 }
 
 function ItemCard (props: ItemCardProps) {
@@ -58,19 +59,21 @@ function ItemCard (props: ItemCardProps) {
     title,
     description,
     isNew = false,
-    currSize
+    currSize,
+    isImageFirst = true
   } = props;
 
   return (
-    <div className='flex flex-col gap-8 items-center'>
-      <div className='relative w-full h-[352px] aspect-auto rounded-[8px] overflow-hidden'>
+    <div className='flex flex-col gap-8 items-center lg:flex-row lg:justify-between'>
+      <div className='relative w-full h-[352px] aspect-auto rounded-[8px] overflow-hidden lg:w-[540px] lg:h-[500px]'>
         <Image
           src={`${image.base}/${currSize}${image.preview}`}
           alt={title}
           fill
+          className='object-cover object-center'
         />
       </div>
-      <div className='flex flex-col gap-6 items-center text-center'>
+      <div className={`${isImageFirst ? "" : "order-first"} flex flex-col gap-6 items-center text-center lg:w-[345px] xl:w-[445px] lg:text-start lg:items-start`}>
         {isNew && (
           <div className='uppercase text-[14px] tracking-[10px] text-brown'>
             New Product
@@ -88,8 +91,8 @@ export default function Products() {
   const { currSize } = useDeviceSize();
 
   return (
-    <div className='mt-[64px] mx-[24px] flex flex-col gap-[120px]'>
-      {HEADPHONES.map(item => (
+    <div className='mt-[64px] mx-[24px] flex flex-col gap-[120px] md:mx-[40px] md:mt-[120px] lg:mt-[160px] lg:mx-lg-custom xl:max-w-[1100px] xl:mx-auto'>
+      {HEADPHONES.map((item, index) => (
         <ItemCard 
           key={item.title} 
           title={item.title} 
@@ -97,6 +100,7 @@ export default function Products() {
           description={item.description} 
           isNew={item.isNew}
           currSize={currSize}
+          isImageFirst={index % 2 == 0}
         />
       ))}
     </div>
