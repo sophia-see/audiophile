@@ -6,37 +6,9 @@ import Image from 'next/image';
 import Button from '@/components/ui/Button';
 import Paragraph from '@/components/ui/Paragraph';
 import Title from '@/components/ui/Title';
-
-const HEADPHONES = [
-  {
-    isNew: true,
-    title: "XX99 Mark II Headphones",
-    description: "The new XX99 Mark II headphones is the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.",
-    image: {
-      base: "/assets/product-xx99-mark-two-headphones",
-      preview: "/image-category-page-preview.jpg",
-      full: "/image-product.jpg"
-    }
-  },
-  {
-    title: "XX99 Mark I Headphones",
-    description: "As the gold standard for headphones, the classic XX99 Mark I offers detailed and accurate audio reproduction for audiophiles, mixing engineers, and music aficionados alike in studios and on the go.",
-    image: {
-      base: "/assets/product-xx99-mark-one-headphones",
-      preview: "/image-category-page-preview.jpg",
-      full: "/image-product.jpg"
-    }
-  },
-  {
-    title: "XX59 Headphones",
-    description: "Enjoy your audio almost anywhere and customize it to your specific tastes with the XX59 headphones. The stylish yet durable versatile wireless headset is a brilliant companion at home or on the move.",
-    image: {
-      base: "/assets/product-xx59-headphones",
-      preview: "/image-category-page-preview.jpg",
-      full: "/image-product.jpg"
-    }
-  },
-]
+import Link from 'next/link';
+import { HEADPHONES } from '@/lib/constants';
+import { toProductUrl } from '@/lib/utils';
 
 interface ImageType {
   base: string;
@@ -45,6 +17,7 @@ interface ImageType {
 }
 
 interface ItemCardProps {
+  id: string;
   title: string;
   image: ImageType;
   description: string;
@@ -55,6 +28,7 @@ interface ItemCardProps {
 
 function ItemCard (props: ItemCardProps) {
   const {
+    id,
     image,
     title,
     description,
@@ -81,7 +55,11 @@ function ItemCard (props: ItemCardProps) {
         )}
         <Title text={title} />
         <Paragraph text={description} />
-        <Button>See Product</Button>
+        <Link href={toProductUrl(id, title)}>
+          <Button>
+              See Product
+          </Button>
+        </Link>
       </div>
     </div>
   )
@@ -95,6 +73,7 @@ export default function Products() {
       {HEADPHONES.map((item, index) => (
         <ItemCard 
           key={item.title} 
+          id={item.id}
           title={item.title} 
           image={item.image} 
           description={item.description} 

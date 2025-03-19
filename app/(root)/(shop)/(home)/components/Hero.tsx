@@ -4,8 +4,18 @@ import Button from '@/components/ui/Button'
 import Paragraph from '@/components/ui/Paragraph'
 import Title from '@/components/ui/Title'
 import useDeviceSize from '@/hooks/use-device-size'
+import { HEADPHONES } from '@/lib/constants'
+import { toProductUrl } from '@/lib/utils'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
+
+const FEATURED_PRODUCT = {
+  id: HEADPHONES[0].id,
+  title: HEADPHONES[0].title,
+  description: "Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.",
+  image: "image-header.jpg"
+}
 
 export default function Hero() {
   const { currSize } = useDeviceSize();
@@ -14,7 +24,7 @@ export default function Hero() {
     <section className="flex justify-center lg:justify-start xl:max-w-[1100px] xl:mx-auto h-[calc(700px-90px)] md:h-[calc(729px-90px)]">
       <div className='bg-[#191919] brightness-[65%] w-full h-[700px] absolute left-0 right-0 top-[-100px] -z-10 md:h-[729px]'>
         <Image
-          src={`/assets/home/${currSize}/image-header.jpg`}
+          src={`/assets/home/${currSize}/${FEATURED_PRODUCT.image}`}
           alt='black headphones'
           fill
           className='object-cover object-center mix-blend-normal xl:mx-auto xl:max-w-[1440px]'
@@ -32,14 +42,17 @@ export default function Hero() {
         >
         <div className='opacity-50 text-[14px] tracking-[10px] uppercase'>New Product</div>
         <Title 
-          variant='extra' text='XX99 Mark II Headphones' 
+          variant='extra' 
+          text={FEATURED_PRODUCT.title}
           className='mt-[16px] mb-[24px] md:mt-[24px]'
         />
         <Paragraph 
-          text='Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.' 
+          text={FEATURED_PRODUCT.description} 
           className='opacity-75'  
         />
-        <Button className='mx-auto mt-[28px] md:mt-[40px] lg:mx-0'>See Product</Button>
+        <Link href={toProductUrl(FEATURED_PRODUCT.id, FEATURED_PRODUCT.title)}>
+          <Button className='mx-auto mt-[28px] md:mt-[40px] lg:mx-0'>See Product</Button>
+        </Link>
       </div>
     </section>
   )

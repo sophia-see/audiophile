@@ -7,6 +7,29 @@ import useDeviceSize from '@/hooks/use-device-size'
 import Image from 'next/image'
 import React from 'react'
 import { motion } from "framer-motion"
+import { EARPHONES, SPEAKERS } from '@/lib/constants'
+import Link from 'next/link'
+import { toProductUrl } from '@/lib/utils'
+
+const FEATURED_PRODUCTS = [
+  {
+    id: SPEAKERS[0].id,
+    title: SPEAKERS[0].title,
+    description: "Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound.",
+    image: "image-speaker-zx9.png"
+  },
+  {
+    id: SPEAKERS[1].id,
+    title: SPEAKERS[1].title,
+    image: "image-speaker-zx7.jpg"
+  },
+  {
+    id: EARPHONES[0].id,
+    title: EARPHONES[0].title,
+    image: "image-earphones-yx1.jpg"
+  },
+]
+
 export default function Products() {
   const { currSize } = useDeviceSize();
 
@@ -56,22 +79,24 @@ export default function Products() {
 
       <div className="z-10 w-[172px] h-[200px] relative md:w-[197px] md:h-[237px] lg:w-[310px] lg:h-[393px] xl-1440:w-[410px] xl-1440:h-[493px] lg:absolute lg:left-1/2 lg:-translate-x-[110%] lg:top-1/2 lg:-translate-y-1/2 xl-1440:-translate-x-full xl-1440:top-[102%] xl-1440:-translate-y-full">
         <Image
-          src={"/assets/home/desktop/image-speaker-zx9.png"}
-          alt="ZX9 Speaker"
+          src={`/assets/home/desktop/${FEATURED_PRODUCTS[0].image}`}
+          alt={FEATURED_PRODUCTS[0].title}
           fill
           className="aspect-auto"
         />
       </div>
 
       <div className="z-10 flex flex-col items-center gap-6 text-center md:max-w-[349px] lg:ml-auto lg:text-start lg:items-start lg:pt-[100px] lg:pb-[90px] xl-1440:pt-[133px] xl-1440:pb-[124px]">
-        <Title variant="extra" text="ZX9 SPEAKER" />
+        <Title variant="extra" text={FEATURED_PRODUCTS[0].title} />
         <Paragraph
           className="opacity-75"
-          text="Upgrade to premium speakers that are phenomenally built to deliver truly remarkable sound."
+          text={FEATURED_PRODUCTS[0].description as string}
         />
-        <Button variant="black" className="mt-[40px]">
-          See Product
-        </Button>
+        <Link href={toProductUrl(FEATURED_PRODUCTS[0].id, FEATURED_PRODUCTS[0].title)}>
+          <Button variant="black" className="mt-[40px]">
+            See Product
+          </Button>
+        </Link>
       </div>
     </motion.div>
 
@@ -79,15 +104,17 @@ export default function Products() {
       <div className='w-full h-[327px] relative rounded-[8px] overflow-hidden'>
         <div className='-z-10 absolute inset-0  rounded-[8px] overflow-hidden'>
           <Image
-            src={`/assets/home/${currSize}/image-speaker-zx7.jpg`}
-            alt='ZX7 Speaker'
+            src={`/assets/home/${currSize}/${FEATURED_PRODUCTS[1].image}`}
+            alt={FEATURED_PRODUCTS[1].title}
             fill
             className='object-cover object-center'
           />
         </div>
         <div className='px-6 flex flex-col gap-8 h-full w-full place-content-center md:px-[62px] lg:px-[95px]'>
-          <Title text='ZX7 SPEAKER' />
-          <Button variant='outline' className='w-fit'>See Product</Button>
+          <Title text={FEATURED_PRODUCTS[1].title} />
+          <Link href={toProductUrl(FEATURED_PRODUCTS[1].id, FEATURED_PRODUCTS[1].title)}>
+            <Button variant='outline' className='w-fit'>See Product</Button>
+          </Link>
         </div>
       </div>
 
@@ -95,15 +122,17 @@ export default function Products() {
       <div className='flex flex-col gap-6 md:grid md:grid-cols-2 md:gap-[11px]'>
         <div className='w-full h-[200px] rounded-[8px] overflow-hidden relative md:h-[320px]'>
           <Image
-            src={`/assets/home/${currSize}/image-earphones-yx1.jpg`}
-            alt='YX1 Earphones'
+            src={`/assets/home/${currSize}/${FEATURED_PRODUCTS[2].image}`}
+            alt={FEATURED_PRODUCTS[2].title}
             fill
             className='aspect-auto'
           />
         </div>
         <div className='flex-grow-0 pl-6 flex flex-col gap-8 place-content-center w-full h-[200px] rounded-[8px] bg-gray md:pl-[41px] md:h-[320px] lg:pl-[95px]'>
-          <Title text='YX1 EARPHONES' />
-          <Button variant='outline' className='w-fit'>See Product</Button>
+          <Title text={FEATURED_PRODUCTS[2].title} />
+          <Link href={toProductUrl(FEATURED_PRODUCTS[2].id, FEATURED_PRODUCTS[2].title)}>
+            <Button variant='outline' className='w-fit'>See Product</Button>
+          </Link>
         </div>
       </div>
     </section>
