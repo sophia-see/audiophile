@@ -92,7 +92,7 @@ export default function Products() {
           className="opacity-75"
           text={FEATURED_PRODUCTS[0].description as string}
         />
-        <Link href={toProductUrl(FEATURED_PRODUCTS[0].id, FEATURED_PRODUCTS[0].title)}>
+        <Link href={toProductUrl(parseInt(FEATURED_PRODUCTS[0].id), FEATURED_PRODUCTS[0].title)}>
           <Button variant="black" className="mt-[40px]">
             See Product
           </Button>
@@ -112,7 +112,7 @@ export default function Products() {
         </div>
         <div className='px-6 flex flex-col gap-8 h-full w-full place-content-center md:px-[62px] lg:px-[95px]'>
           <Title text={FEATURED_PRODUCTS[1].title} />
-          <Link href={toProductUrl(FEATURED_PRODUCTS[1].id, FEATURED_PRODUCTS[1].title)}>
+          <Link href={toProductUrl(parseInt(FEATURED_PRODUCTS[1].id), FEATURED_PRODUCTS[1].title)}>
             <Button variant='outline' className='w-fit'>See Product</Button>
           </Link>
         </div>
@@ -130,7 +130,7 @@ export default function Products() {
         </div>
         <div className='flex-grow-0 pl-6 flex flex-col gap-8 place-content-center w-full h-[200px] rounded-[8px] bg-gray md:pl-[41px] md:h-[320px] lg:pl-[95px]'>
           <Title text={FEATURED_PRODUCTS[2].title} />
-          <Link href={toProductUrl(FEATURED_PRODUCTS[2].id, FEATURED_PRODUCTS[2].title)}>
+          <Link href={toProductUrl(parseInt(FEATURED_PRODUCTS[2].id), FEATURED_PRODUCTS[2].title)}>
             <Button variant='outline' className='w-fit'>See Product</Button>
           </Link>
         </div>
