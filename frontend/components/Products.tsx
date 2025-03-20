@@ -72,10 +72,10 @@ export default function Products({items}: ProductsProps) {
       const data = await fetchProducts(CategoryType.headphones);
       if (data) setProducts(data.data);
 
-      console.log({ data })
+      console.log({ products })
     };
     getProducts();
-  }, []);
+  }, [products]);
 
   return (
     <div className='mt-[64px] mx-[24px] flex flex-col gap-[120px] md:mx-[40px] md:mt-[120px] lg:mt-[160px] lg:mx-lg-custom xl:max-w-[1100px] xl:mx-auto'>
