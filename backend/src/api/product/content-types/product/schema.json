@@ -40,8 +40,8 @@
         "speakers"
       ]
     },
-    "sample": {
-      "type": "string"
+    "featuredDesc": {
+      "type": "text"
     }
   }
 }
