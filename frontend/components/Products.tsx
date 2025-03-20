@@ -8,6 +8,7 @@ import Paragraph from '@/components/ui/Paragraph';
 import Title from '@/components/ui/Title';
 import Link from 'next/link';
 import { toProductUrl } from '@/lib/utils';
+import { CategoryType, fetchProducts } from '@/lib/api';
 
 interface ItemCardProps {
   id: string;
@@ -64,6 +65,17 @@ interface ProductsProps {
 
 export default function Products({items}: ProductsProps) {
   const { currSize } = useDeviceSize();
+  const [products, setProducts] = React.useState([]);
+
+  React.useEffect(() => {
+    const getProducts = async () => {
+      const data = await fetchProducts(CategoryType.headphones);
+      if (data) setProducts(data.data);
+
+      console.log({ data })
+    };
+    getProducts();
+  }, []);
 
   return (
     <div className='mt-[64px] mx-[24px] flex flex-col gap-[120px] md:mx-[40px] md:mt-[120px] lg:mt-[160px] lg:mx-lg-custom xl:max-w-[1100px] xl:mx-auto'>
