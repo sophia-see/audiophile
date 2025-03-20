@@ -39,6 +39,9 @@
         "earphones",
         "speakers"
       ]
+    },
+    "sample": {
+      "type": "string"
     }
   }
 }
