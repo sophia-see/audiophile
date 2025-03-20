@@ -8,7 +8,7 @@ import Paragraph from '@/components/ui/Paragraph';
 import Title from '@/components/ui/Title';
 import Link from 'next/link';
 import { toProductUrl } from '@/lib/utils';
-import { CategoryType, fetchProducts } from '@/lib/api';
+// import { CategoryType, fetchProducts } from '@/lib/api';
 
 interface ItemCardProps {
   id: string;
