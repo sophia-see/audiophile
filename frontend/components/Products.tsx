@@ -8,6 +8,7 @@ import Paragraph from '@/components/ui/Paragraph';
 import Title from '@/components/ui/Title';
 import Link from 'next/link';
 import { toProductUrl } from '@/lib/utils';
+import { motion } from "framer-motion";
 // import { CategoryType, fetchProducts } from '@/lib/api';
 
 interface ItemCardProps {
@@ -33,14 +34,20 @@ function ItemCard (props: ItemCardProps) {
 
   return (
     <div className='flex flex-col gap-8 items-center lg:flex-row lg:justify-between'>
-      <div className='relative w-full h-[352px] aspect-auto rounded-[8px] overflow-hidden lg:w-[540px] lg:h-[500px]'>
+      <motion.div 
+        transition={{ duration: 0.5 }}
+        initial={{ scale: 0.7, rotateZ: -20 * (isImageFirst ? 1 : -1)}}
+        whileInView={{ scale: 1, rotateZ: 0 }}
+        exit={{ scale: 0.7, rotateZ: -20 * (isImageFirst ? 1 : -1)}}
+        className='relative w-full h-[352px] aspect-auto rounded-[8px] overflow-hidden lg:w-[540px] lg:h-[500px]'
+      >
         <Image
           src={`${image[currSize as keyof ProductImageType].preview}`}
           alt={title}
           fill
           className='object-cover object-center'
         />
-      </div>
+      </motion.div>
       <div className={`${isImageFirst ? "" : "order-first"} flex flex-col gap-6 items-center text-center lg:w-[345px] xl:w-[445px] lg:text-start lg:items-start`}>
         {isNew && (
           <div className='uppercase text-[14px] tracking-[10px] text-brown'>
