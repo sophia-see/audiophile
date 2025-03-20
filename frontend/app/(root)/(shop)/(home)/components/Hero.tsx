@@ -50,7 +50,7 @@ export default function Hero() {
           text={FEATURED_PRODUCT.description} 
           className='opacity-75'  
         />
-        <Link href={toProductUrl(FEATURED_PRODUCT.id, FEATURED_PRODUCT.title)}>
+        <Link href={toProductUrl(parseInt(FEATURED_PRODUCT.id), FEATURED_PRODUCT.title)}>
           <Button className='mx-auto mt-[28px] md:mt-[40px] lg:mx-0'>See Product</Button>
         </Link>
       </div>
