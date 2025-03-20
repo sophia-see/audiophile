@@ -1,6 +1,10 @@
-import Footer from '@/components/ui/Footer'
 import Header from '@/components/ui/Header'
+import dynamic from 'next/dynamic'
 import React from 'react'
+
+const Footer = dynamic(() => import('@/components/ui/Footer'), {
+  loading: () => <div>Loading...</div>,
+})
 
 export default function layout ({children}: {children: React.ReactNode}) {
   return (

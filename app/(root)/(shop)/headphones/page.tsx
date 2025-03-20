@@ -1,9 +1,12 @@
 import Title from '@/components/ui/Title'
 import React from 'react'
 import Products from '../../../../components/Products';
-import Categories from '@/components/Categories';
 import { HEADPHONES } from '@/lib/constants';
+import dynamic from 'next/dynamic';
 
+const Categories = dynamic(() => import('@/components/Categories'), {
+  loading: () => <div>Loading categories...</div>,
+});
 
 export default function page() {
   return (
