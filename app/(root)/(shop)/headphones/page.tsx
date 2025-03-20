@@ -1,7 +1,8 @@
 import Title from '@/components/ui/Title'
 import React from 'react'
-import Products from './components/Products';
+import Products from '../../../../components/Products';
 import Categories from '@/components/Categories';
+import { HEADPHONES } from '@/lib/constants';
 
 
 export default function page() {
@@ -11,7 +12,7 @@ export default function page() {
         <Title text="Headphones" />
       </div>
 
-      <Products />
+      <Products items={HEADPHONES}/>
 
       <Categories className='pt-[120px] pb-[120px] md:mx-[40px] lg:pt-[160px] lg:pb-[160px] lg:mx-lg-custom'/>
     </div>

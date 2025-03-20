@@ -7,14 +7,7 @@ import Button from '@/components/ui/Button';
 import Paragraph from '@/components/ui/Paragraph';
 import Title from '@/components/ui/Title';
 import Link from 'next/link';
-import { HEADPHONES } from '@/lib/constants';
 import { toProductUrl } from '@/lib/utils';
-
-interface ImageType {
-  base: string;
-  preview: string;
-  full: string;
-}
 
 interface ItemCardProps {
   id: string;
@@ -65,12 +58,16 @@ function ItemCard (props: ItemCardProps) {
   )
 }
 
-export default function Products() {
+interface ProductsProps {
+  items: ItemType[];
+}
+
+export default function Products({items}: ProductsProps) {
   const { currSize } = useDeviceSize();
 
   return (
     <div className='mt-[64px] mx-[24px] flex flex-col gap-[120px] md:mx-[40px] md:mt-[120px] lg:mt-[160px] lg:mx-lg-custom xl:max-w-[1100px] xl:mx-auto'>
-      {HEADPHONES.map((item, index) => (
+      {items.map((item, index) => (
         <ItemCard 
           key={item.title} 
           id={item.id}

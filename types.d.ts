@@ -13,3 +13,17 @@ interface UpdateUserParams {
 interface DeleteUserParams {
   id: string
 }
+
+interface ImageType {
+  base: string;
+  preview: string;
+  full: string;
+}
+
+interface ItemType {
+  id: string;
+  isNew?: boolean;
+  title: string;
+  description: string;
+  image: ImageType
+}
