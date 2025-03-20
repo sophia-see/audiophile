@@ -29,6 +29,7 @@ interface ItemType {
   id: string;
   isNew?: boolean;
   title: string;
+  featuredDesc?: string;
   description: string;
   image: ImageType;
   features: string;
