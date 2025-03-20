@@ -20,10 +20,18 @@ interface ImageType {
   full: string;
 }
 
+interface InclusionType {
+  quantity: number;
+  name: string;
+}
+
 interface ItemType {
   id: string;
   isNew?: boolean;
   title: string;
   description: string;
-  image: ImageType
+  image: ImageType;
+  features: string;
+  inclusions: InclusionType[];
+  price: number;
 }
