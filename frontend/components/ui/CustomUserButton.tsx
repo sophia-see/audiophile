@@ -1,12 +1,23 @@
 "use client";
 import { useUser, useClerk } from "@clerk/nextjs";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function CustomUserButton() {
   const { user } = useUser();
   const { signOut } = useClerk();
   const [open, setOpen] = useState(false);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node))
+        setOpen(false);
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
 
   // Extract initials
   const getInitials = (name?: string) => {
@@ -29,9 +40,9 @@ export default function CustomUserButton() {
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-48 h-auto bg-gray text-black rounded-md shadow-lg overflow-hidden z-20 text-[14px]">
+        <div ref={userMenuRef} className="absolute right-0 mt-2 w-48 h-auto bg-gray text-black rounded-md shadow-lg overflow-hidden z-20 text-[14px]">
           <button
-            className="block w-full text-left px-4 py-4 hover:bg-light-brown transition duration-150"
+            className="font-semibold block w-full text-left px-4 py-4 hover:bg-brown hover:text-white transition duration-100"
           >
             <Link href={"/my-orders"}>
               My Orders
@@ -39,7 +50,7 @@ export default function CustomUserButton() {
           </button>
           <button
             onClick={() => signOut()}
-            className="block w-full text-left px-4 py-4 hover:bg-light-brown transition duration-150"
+            className="font-semibold block w-full text-left px-4 py-4 hover:bg-brown hover:text-white transition duration-100"
           >
             Sign Out
           </button>
