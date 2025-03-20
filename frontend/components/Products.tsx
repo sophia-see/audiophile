@@ -11,9 +11,9 @@ import { toProductUrl } from '@/lib/utils';
 // import { CategoryType, fetchProducts } from '@/lib/api';
 
 interface ItemCardProps {
-  id: string;
+  id: number;
   title: string;
-  image: ImageType;
+  image: ProductImageType;
   description: string;
   isNew?: boolean;
   currSize: string;
@@ -35,7 +35,7 @@ function ItemCard (props: ItemCardProps) {
     <div className='flex flex-col gap-8 items-center lg:flex-row lg:justify-between'>
       <div className='relative w-full h-[352px] aspect-auto rounded-[8px] overflow-hidden lg:w-[540px] lg:h-[500px]'>
         <Image
-          src={`${image.base}/${currSize}${image.preview}`}
+          src={`${image[currSize as keyof ProductImageType].preview}`}
           alt={title}
           fill
           className='object-cover object-center'
@@ -60,7 +60,7 @@ function ItemCard (props: ItemCardProps) {
 }
 
 interface ProductsProps {
-  items: ItemType[];
+  items: ProductType[];
 }
 
 export default function Products({items}: ProductsProps) {

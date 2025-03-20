@@ -15,9 +15,12 @@ interface DeleteUserParams {
 }
 
 interface ImageType {
-  base: string;
+  base?: string;
+
+  gallery?: string[];
   preview: string;
   full: string;
+
 }
 
 interface InclusionType {
@@ -34,5 +37,24 @@ interface ItemType {
   image: ImageType;
   features: string;
   inclusions: InclusionType[];
+  price: number;
+}
+
+interface ProductImageType {
+  desktop: ImageType;
+  tablet: ImageType;
+  mobile: ImageType;
+}
+
+interface ProductType {
+  id: number;
+  title: string;
+  category: string;
+  description: string;
+  features: string;
+  featuredDesc?: string;
+  isNew?: boolean;
+  inclusions: InclusionType[];
+  image: ProductImageType;
   price: number;
 }
