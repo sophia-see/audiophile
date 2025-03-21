@@ -21,7 +21,10 @@ const Products = dynamic(() => import("./components/Products"), {
 export default async function Home() {
   const heroProduct = (await fetchProductById(HERO_PRODUCT_ID)).data[0];
 
-  const featuredProducts = await Promise.all(FEATURED_PRODUCTS_ID.map(async (id) => (await fetchProductById(id)).data[0])) ?? [];
+  const featuredProducts = await Promise.all(
+    FEATURED_PRODUCTS_ID.map(async (id) => 
+      (await fetchProductById(id)).data[0])
+  ) ?? [];
 
   return (
     <main className="relative">

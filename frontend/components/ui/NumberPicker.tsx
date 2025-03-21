@@ -24,7 +24,7 @@ export default function NumberPicker(props: NumberPickerProps) {
     <div 
       className={`
         w-fit 
-        flex items-center gap-[5px]
+        flex items-center gap-[5px] justify-evenly
         bg-gray py-[15px] 
         font-bold text-[13px] tracking-[1px]
         ${className || ""}

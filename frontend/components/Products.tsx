@@ -9,6 +9,7 @@ import Title from '@/components/ui/Title';
 import Link from 'next/link';
 import { toProductUrl } from '@/lib/utils';
 import { motion } from "framer-motion";
+import NewProductBadge from './ui/NewProductBadge';
 // import { CategoryType, fetchProducts } from '@/lib/api';
 
 interface ItemCardProps {
@@ -50,9 +51,7 @@ function ItemCard (props: ItemCardProps) {
       </motion.div>
       <div className={`${isImageFirst ? "" : "order-first"} flex flex-col gap-6 items-center text-center lg:w-[345px] xl:w-[445px] lg:text-start lg:items-start`}>
         {isNew && (
-          <div className='uppercase text-[14px] tracking-[10px] text-brown'>
-            New Product
-          </div>
+          <NewProductBadge />
         )}
         <Title text={title} />
         <Paragraph text={description} />
