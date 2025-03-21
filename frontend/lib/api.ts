@@ -20,10 +20,12 @@ export const fetchProducts = async (type: CategoryType) => {
 
 export const fetchProductById = async (id: number) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products?populate=*&filters[id][$eq]=${id}`);
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/products?populate=*&filters[id][$eq]=${id}`
+    const res = await fetch(url);
     if (!res.ok) throw new Error("Failed to fetch products");
 
     const data = await res.json();
+    console.log({url})
     return data;
   } catch (error) {
     console.error(error);

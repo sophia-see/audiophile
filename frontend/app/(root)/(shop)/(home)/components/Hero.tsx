@@ -13,12 +13,18 @@ import React from 'react'
 const FEATURED_PRODUCT = {
   id: HEADPHONES[0].id,
   title: HEADPHONES[0].title,
-  description: "Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.",
+  featuredDesc: "Experience natural, lifelike audio and exceptional build quality made for the passionate music enthusiast.",
   image: "image-header.jpg"
 }
 
-export default function Hero() {
+interface HeroProps {
+  product: ProductType | null | undefined;
+}
+
+export default function Hero({product}: HeroProps) {
   const { currSize } = useDeviceSize();
+
+  const featuredProduct = product ?? FEATURED_PRODUCT;
 
   return (
     <section className="flex justify-center lg:justify-start xl:max-w-[1100px] xl:mx-auto h-[calc(700px-90px)] md:h-[calc(729px-90px)]">
@@ -43,14 +49,14 @@ export default function Hero() {
         <div className='opacity-50 text-[14px] tracking-[10px] uppercase'>New Product</div>
         <Title 
           variant='extra' 
-          text={FEATURED_PRODUCT.title}
+          text={featuredProduct.title}
           className='mt-[16px] mb-[24px] md:mt-[24px]'
         />
         <Paragraph 
-          text={FEATURED_PRODUCT.description} 
+          text={featuredProduct.featuredDesc ?? ""}
           className='opacity-75'  
         />
-        <Link href={toProductUrl(parseInt(FEATURED_PRODUCT.id), FEATURED_PRODUCT.title)}>
+        <Link href={toProductUrl(parseInt(`${featuredProduct.id}`), featuredProduct.title ?? "")}>
           <Button className='mx-auto mt-[28px] md:mt-[40px] lg:mx-0'>See Product</Button>
         </Link>
       </div>
