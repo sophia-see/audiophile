@@ -1,23 +1,34 @@
-import Categories from "@/components/Categories";
 import Hero from "./components/Hero";
 import BackdropBlur from "@/components/ui/BackdropBlur";
-import Products from "./components/Products";
 import { fetchProductById } from "@/lib/api";
+import dynamic from "next/dynamic";
 
-const FEATURED_PRODUCT_ID = 21;
+const HERO_PRODUCT_ID = 21;
+const FEATURED_PRODUCTS_ID = [
+  24,
+  23,
+  22
+]
 
+const Categories = dynamic(() => import("@/components/Categories"), {
+  loading: () => <div>Loading...</div>
+})
+
+const Products = dynamic(() => import("./components/Products"), {
+  loading: () => <div>Loading...</div>
+})
 
 export default async function Home() {
-  const heroProduct = (await fetchProductById(FEATURED_PRODUCT_ID)).data[0];
+  const heroProduct = (await fetchProductById(HERO_PRODUCT_ID)).data[0];
 
-  console.log({ heroProduct })
+  const featuredProducts = await Promise.all(FEATURED_PRODUCTS_ID.map(async (id) => (await fetchProductById(id)).data[0])) ?? [];
 
   return (
     <main className="relative">
       <BackdropBlur />
       <Hero product={heroProduct}/>
       <Categories className="pb-0 md:pb-0 lg:pb-0 md:mx-[40px] lg:mx-lg-custom"/>
-      <Products />
+      <Products products={featuredProducts}/>
     </main>
   )
 }

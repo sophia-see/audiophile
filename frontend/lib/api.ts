@@ -25,7 +25,6 @@ export const fetchProductById = async (id: number) => {
     if (!res.ok) throw new Error("Failed to fetch products");
 
     const data = await res.json();
-    console.log({url})
     return data;
   } catch (error) {
     console.error(error);
