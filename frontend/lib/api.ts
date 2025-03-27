@@ -9,7 +9,7 @@ export const fetchProducts = async (type: CategoryType) => {
   try {
     const url = `${process.env.NEXT_PUBLIC_API_URL}/api/products?populate=*&filters[category][$eq]=${type}&sort=updatedAt:desc&sort=createdAt:desc`
     const res = await fetch(url, {
-      next: { revalidate: 60 }, // Cache for 1 min
+      // next: { revalidate: 60 }, // Cache for 1 min
     });
     if (!res.ok) throw new Error("Failed to fetch products");
 

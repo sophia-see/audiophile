@@ -1,6 +1,6 @@
 import React from 'react'
 import ProductImage from './ProductImage'
-import ProductDetails from './ProductDetails'
+import ProductDescription from './ProductDescription'
 import ProductActionButtons from './ProductActionButtons'
 
 interface MainDetailsProps {
@@ -21,7 +21,7 @@ export default function MainDetails(props: MainDetailsProps) {
         imageAlt={title}
       />
       <div className='flex flex-col gap-8'>
-        <ProductDetails 
+        <ProductDescription 
           isNew={isNew}
           title={title}
           description={description}

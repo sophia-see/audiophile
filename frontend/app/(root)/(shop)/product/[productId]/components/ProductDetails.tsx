@@ -1,33 +1,44 @@
-"use client"
-
-import NewProductBadge from '@/components/shared/NewProductBadge';
-import Paragraph from '@/components/shared/Paragraph';
-import Title from '@/components/shared/Title';
+import { fetchProductById } from '@/lib/api';
+import dynamic from 'next/dynamic';
 import React from 'react'
+import MainDetails from './MainDetails';
+import OtherDetails from './OtherDetails';
 
 interface ProductDetailsProps {
-  isNew?: boolean;
-  title: string;
-  description: string;
-  price: number;
+  params: Promise<{ productId: string }>;
 }
 
-export default function ProductDetails(props: ProductDetailsProps) {
-  const {
-    isNew = false,
-    title,
-    description,
-    price
-  } = props;
+
+const ProductGallery = dynamic(() => import("./ProductGallery"), {
+  loading: () => <div>Loading Gallery...</div>,
+});
+
+export default async function ProductDetails({ params }: ProductDetailsProps) {
+  const productId = parseInt((await params).productId);
+  
+  if (isNaN(productId)) {
+    return <div>Product not found</div>;
+  }
+
+  const productRes = await fetchProductById(productId);
+
+  if (!productRes?.data?.length) {
+    return <div>Product not found</div>;
+  }
+
+  const product = productRes.data[0] as ProductType;
 
   return (
-    <div className='flex flex-col gap-6 md:gap-[17px]'>
-      {isNew && <NewProductBadge />}
-      <div className='flex flex-col gap-6'>
-        <Title text={title} />
-        <Paragraph text={description} className='opacity-50'/>
-        <div className='font-bold text-[18px] tracking-[1.29px]'>$ {price.toLocaleString()}</div>
-      </div>
-    </div>
-  )
+    <>
+      <MainDetails 
+        isNew={product.isNew}
+        title={product.title}
+        description={product.description}
+        price={product.price}
+        image={product.image}
+      />
+      <OtherDetails features={product.features} inclusions={product.inclusions} />
+      <ProductGallery image={product.image} />
+    </>
+  );
 }
