@@ -26,7 +26,7 @@ const Suggestions = dynamic(() => import("./components/Suggestions"), {
 export default async function ProductPage({params}: ProductPageProps) {
   const productId = (await params).productId;
   const product = (await fetchProductById(parseInt(productId ?? ""))).data[0] as ProductType;
-  const suggestedProducts = (await fetchRandomProductsExceptId(parseInt(productId ?? ""))).data as ProductType[]; 
+  const suggestedProducts = (await fetchRandomProductsExceptId(parseInt(productId ?? ""))) as ProductType[]; 
   const { title, description, image, price, isNew, features, inclusions } = product;
   
   return (

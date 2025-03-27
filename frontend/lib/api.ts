@@ -34,13 +34,15 @@ export const fetchProductById = async (id: number) => {
 
 export const fetchRandomProductsExceptId = async (id: number) => {
   try {
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/products?populate=*&filters[id][$ne]=${id}&pagination[limit]=3`;
+    
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/products?populate=*&filters[id][$ne]=${id}&pagination[limit]=10`;
     const res = await fetch(url);
     if (!res.ok) throw new Error("Failed to fetch products");
 
     const data = await res.json();
-    console.log({data})
-    return data;
+    // Shuffle and pick 3 random products
+    const shuffled = data.data.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, 3);
   } catch (error) {
     console.error(error);
     return null;
