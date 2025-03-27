@@ -7,7 +7,10 @@ export enum CategoryType {
 
 export const fetchProducts = async (type: CategoryType) => {
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/products?populate=*&filters[category][$eq]=${type}&sort=updatedAt:desc&sort=createdAt:desc`);
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/products?populate=*&filters[category][$eq]=${type}&sort=updatedAt:desc&sort=createdAt:desc`
+    const res = await fetch(url, {
+      next: { revalidate: 60 }, // Cache for 1 min
+    });
     if (!res.ok) throw new Error("Failed to fetch products");
 
     const data = await res.json();
@@ -21,7 +24,9 @@ export const fetchProducts = async (type: CategoryType) => {
 export const fetchProductById = async (id: number) => {
   try {
     const url = `${process.env.NEXT_PUBLIC_API_URL}/api/products?populate=*&filters[id][$eq]=${id}`
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      next: { revalidate: 60 }, // Cache for 1 min
+    });
     if (!res.ok) throw new Error("Failed to fetch products");
 
     const data = await res.json();
@@ -37,7 +42,9 @@ export const fetchRandomProductsExceptId = async (id: number) => {
   try {
     
     const url = `${process.env.NEXT_PUBLIC_API_URL}/api/products?fields[0]=id&fields[1]=title&fields[2]=image&filters[id][$ne]=${id}&pagination[limit]=10`;
-    const res = await fetch(url);
+    const res = await fetch(url, {
+      next: { revalidate: 60 }, // Cache for 1 min
+    });
     if (!res.ok) throw new Error("Failed to fetch products");
 
     const data = await res.json();
