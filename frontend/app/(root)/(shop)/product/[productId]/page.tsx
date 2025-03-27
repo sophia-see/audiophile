@@ -45,7 +45,7 @@ export default async function ProductPage({params}: ProductPageProps) {
         image={image}
       />
       <OtherDetails features={features} inclusions={inclusions} />
-      <ProductGallery />
+      <ProductGallery image={image}/>
       <Suggestions />
     </div>
   )

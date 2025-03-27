@@ -19,7 +19,7 @@ export default function OtherDetails({features, inclusions}: OtherDetailsProps) 
             <Paragraph text={paragraph} key={index} className='opacity-50'/>
         ))}
       </div>
-      <div className='flex flex-col gap-6 max-md:grid max-md:grid-cols-2'>
+      <div className='flex flex-col gap-6 md:grid md:grid-cols-2 lg:flex lg:flex-col'>
         <Title variant='subtitle' text="In the box" className='h-fit'/>
         <div className='flex flex-col gap-2'>
           {inclusions.map((item, index) => (
