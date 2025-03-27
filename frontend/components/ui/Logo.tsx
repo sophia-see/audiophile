@@ -11,7 +11,7 @@ export default function Logo() {
       alt="audiophile logo"
       width={143}
       height={24}
-      priority
+      loading='lazy'
       onClick={() => redirect("/")}
       className='cursor-pointer'
     />

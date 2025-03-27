@@ -1,15 +1,26 @@
 import BackButton from '@/components/ui/BackButton';
 import { fetchProductById } from '@/lib/api';
 import React from 'react'
-import ProductImage from './components/ProductImage';
-import ProductDetails from './components/ProductDetails';
-import ProductActionButtons from './components/ProductActionButtons';
+import MainDetails from './components/MainDetails';
+import dynamic from 'next/dynamic';
 
 interface ProductPageProps {
   params: Promise<{
     productId: string;
   }>
 }
+
+const OtherDetails = dynamic(() => import("./components/OtherDetails"), {
+  loading: () => <div>Loading</div>
+})
+
+const ProductGallery = dynamic(() => import("./components/ProductGallery"), {
+  loading: () => <div>Loading</div>
+})
+
+const Suggestions = dynamic(() => import("./components/Suggestions"), {
+  loading: () => <div>Loading</div>
+})
 
 export default async function ProductPage({params}: ProductPageProps) {
   const productId = (await params).productId;
@@ -26,22 +37,16 @@ export default async function ProductPage({params}: ProductPageProps) {
       `}
     >
       <BackButton />
-      <div className='mt-[24px] grid grid-cols-1 gap-[32px] md:grid-cols-[281px_1fr] md:gap-[69px] md:items-center lg:mt-[56px] lg:grid-cols-[440px_1fr] xl:grid-cols-[540px_1fr] xl:gap-[125px]'>
-        <ProductImage
-          imageSrcs={image}
-          imageAlt={title}
-        />
-        <div className='flex flex-col gap-8'>
-          <ProductDetails 
-            isNew={isNew}
-            title={title}
-            description={description}
-            price={price}
-          />
-          <ProductActionButtons />
-        </div>        
-      </div>
-
+      <MainDetails 
+        isNew={isNew}
+        title={title}
+        description={description}
+        price={price}
+        image={image}
+      />
+      <OtherDetails />
+      <ProductGallery />
+      <Suggestions />
     </div>
   )
 }

@@ -8,7 +8,7 @@ import Paragraph from '@/components/ui/Paragraph';
 import Title from '@/components/ui/Title';
 import Link from 'next/link';
 import { toProductUrl } from '@/lib/utils';
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import NewProductBadge from './ui/NewProductBadge';
 // import { CategoryType, fetchProducts } from '@/lib/api';
 
@@ -32,24 +32,39 @@ function ItemCard (props: ItemCardProps) {
     currSize,
     isImageFirst = true
   } = props;
+  const ref = React.useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["0.3 1", "0.8 1"],
+  });
+
+  // Transform animations
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.7, 1]);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.7, 1]);
+  const translateY = useTransform(scrollYProgress, [0, 1], [50, 0]);
 
   return (
-    <div className='flex flex-col gap-8 items-center lg:flex-row lg:justify-between'>
-      <motion.div 
-        transition={{ duration: 0.5 }}
-        initial={{ scale: 0.7, rotateZ: -20 * (isImageFirst ? 1 : -1)}}
-        whileInView={{ scale: 1, rotateZ: 0 }}
-        exit={{ scale: 0.7, rotateZ: -20 * (isImageFirst ? 1 : -1)}}
-        className='relative w-full h-[352px] aspect-auto rounded-[8px] overflow-hidden lg:w-[540px] lg:h-[500px]'
+    <div
+      className="flex flex-col gap-8 items-center lg:flex-row lg:justify-between"
+    >
+      <motion.div
+        ref={ref}
+        style={{
+          opacity: opacity,
+          scale: scale, // Subtle scale-in
+          y: translateY, // Parallax effect
+        }}        
+        className="relative w-full h-[352px] aspect-auto rounded-[8px] overflow-hidden lg:w-[540px] lg:h-[500px]"
       >
         <Image
           src={`${image[currSize as keyof ProductImageType].preview}`}
           alt={title}
           fill
-          className='object-cover object-center'
+          className="object-cover object-center"
         />
       </motion.div>
-      <div className={`${isImageFirst ? "" : "order-first"} flex flex-col gap-6 items-center text-center lg:w-[345px] xl:w-[445px] lg:text-start lg:items-start`}>
+      <div className={`${isImageFirst ? "" : "lg:order-first"} flex flex-col gap-6 items-center text-center lg:w-[345px] xl:w-[445px] lg:text-start lg:items-start`}>
         {isNew && (
           <NewProductBadge />
         )}

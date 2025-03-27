@@ -27,6 +27,7 @@ export default function NumberPicker(props: NumberPickerProps) {
         flex items-center gap-[5px] justify-evenly
         bg-gray py-[15px] 
         font-bold text-[13px] tracking-[1px]
+        select-none
         ${className || ""}
       `}
     >
