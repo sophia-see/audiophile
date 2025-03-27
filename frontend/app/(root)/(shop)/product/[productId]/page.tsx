@@ -18,11 +18,11 @@ const Suggestions = dynamic(() => import("./components/Suggestions"), {
 });
 
 interface ProductPageProps {
-  params: { productId: string };
+  params: Promise<{ productId: string }>;
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const productId = parseInt(params.productId);
+  const productId = parseInt((await params).productId);
 
   if (isNaN(productId)) {
     return <div>Product not found</div>;
