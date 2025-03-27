@@ -32,10 +32,11 @@ export const fetchProductById = async (id: number) => {
   }
 };
 
+// get only image, title, and id
 export const fetchRandomProductsExceptId = async (id: number) => {
   try {
     
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/products?populate=*&filters[id][$ne]=${id}&pagination[limit]=10`;
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/products?fields[0]=id&fields[1]=title&fields[2]=image&filters[id][$ne]=${id}&pagination[limit]=10`;
     const res = await fetch(url);
     if (!res.ok) throw new Error("Failed to fetch products");
 
