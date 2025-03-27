@@ -4,10 +4,7 @@ import React, { Suspense } from 'react';
 import MainDetails from './components/MainDetails';
 import dynamic from 'next/dynamic';
 import Categories from '@/components/Categories';
-
-const OtherDetails = dynamic(() => import("./components/OtherDetails"), {
-  loading: () => <div>Loading</div>,
-});
+import OtherDetails from './components/OtherDetails';
 
 const ProductGallery = dynamic(() => import("./components/ProductGallery"), {
   loading: () => <div>Loading</div>,
@@ -60,15 +57,9 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <Suspense fallback={<div>Loading...</div>}>
         <OtherDetails features={product.features} inclusions={product.inclusions} />
       </Suspense>
-      <Suspense fallback={<div>Loading...</div>}>
-        <ProductGallery image={product.image} />
-      </Suspense>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Suggestions products={suggestedProducts} />
-      </Suspense>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Categories className='pt-[120px] pb-[120px] !mx-0 lg:pt-[160px] lg:pb-[160px] lg:mx-lg-custom' />
-      </Suspense>
+      <ProductGallery image={product.image} />
+      <Suggestions products={suggestedProducts} />
+      <Categories className='pt-[120px] pb-[120px] !mx-0 lg:pt-[160px] lg:pb-[160px] lg:mx-lg-custom' />
     </div>
   );
 }
