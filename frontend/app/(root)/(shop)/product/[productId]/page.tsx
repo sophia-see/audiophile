@@ -1,4 +1,4 @@
-import BackButton from '@/components/ui/BackButton';
+import BackButton from '@/components/shared/BackButton';
 import { fetchProductById, fetchRandomProductsExceptId } from '@/lib/api';
 import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';

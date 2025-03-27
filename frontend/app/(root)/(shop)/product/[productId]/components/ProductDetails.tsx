@@ -1,8 +1,8 @@
 "use client"
 
-import NewProductBadge from '@/components/ui/NewProductBadge';
-import Paragraph from '@/components/ui/Paragraph';
-import Title from '@/components/ui/Title';
+import NewProductBadge from '@/components/shared/NewProductBadge';
+import Paragraph from '@/components/shared/Paragraph';
+import Title from '@/components/shared/Title';
 import React from 'react'
 
 interface ProductDetailsProps {

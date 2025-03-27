@@ -1,7 +1,7 @@
 "use client"
 
-import Button from '@/components/ui/Button';
-import Title from '@/components/ui/Title';
+import Button from '@/components/shared/Button';
+import Title from '@/components/shared/Title';
 import useDeviceSize from '@/hooks/use-device-size';
 import { toProductUrl } from '@/lib/utils';
 import Image from 'next/image';

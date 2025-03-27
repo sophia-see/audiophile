@@ -1,8 +1,8 @@
 "use client"
 
-import Button from '@/components/ui/Button'
-import Paragraph from '@/components/ui/Paragraph'
-import Title from '@/components/ui/Title'
+import Button from '@/components/shared/Button'
+import Paragraph from '@/components/shared/Paragraph'
+import Title from '@/components/shared/Title'
 import useDeviceSize from '@/hooks/use-device-size'
 import { HEADPHONES } from '@/lib/constants'
 import { toProductUrl } from '@/lib/utils'

@@ -1,4 +1,4 @@
-import Title from '@/components/ui/Title'
+import Title from '@/components/shared/Title'
 import React from 'react'
 import Products from '../../../../components/Products';
 import dynamic from 'next/dynamic';

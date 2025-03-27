@@ -3,13 +3,13 @@
 import React from 'react'
 import useDeviceSize from '@/hooks/use-device-size';
 import Image from 'next/image';
-import Button from '@/components/ui/Button';
-import Paragraph from '@/components/ui/Paragraph';
-import Title from '@/components/ui/Title';
+import Button from '@/components/shared/Button';
+import Paragraph from '@/components/shared/Paragraph';
+import Title from '@/components/shared/Title';
 import Link from 'next/link';
 import { toProductUrl } from '@/lib/utils';
 import { motion, useScroll, useTransform } from "framer-motion";
-import NewProductBadge from './ui/NewProductBadge';
+import NewProductBadge from './shared/NewProductBadge';
 // import { CategoryType, fetchProducts } from '@/lib/api';
 
 interface ItemCardProps {

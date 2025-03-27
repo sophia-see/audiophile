@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import React from 'react'
-import Button from './ui/Button'
+import Button from './shared/Button'
 import { ChevronRight } from 'lucide-react'
 import { motion } from "framer-motion";
 import { redirect } from 'next/navigation'

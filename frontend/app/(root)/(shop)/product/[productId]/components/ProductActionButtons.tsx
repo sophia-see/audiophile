@@ -1,7 +1,7 @@
 "use client"
 
-import Button from '@/components/ui/Button'
-import NumberPicker from '@/components/ui/NumberPicker'
+import Button from '@/components/shared/Button'
+import NumberPicker from '@/components/shared/NumberPicker'
 import React from 'react'
 
 export default function ProductActionButtons() {

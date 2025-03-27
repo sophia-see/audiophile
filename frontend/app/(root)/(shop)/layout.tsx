@@ -1,8 +1,8 @@
-import Header from '@/components/ui/Header'
+import Header from '@/components/shared/Header'
 import dynamic from 'next/dynamic'
 import React from 'react'
 
-const Footer = dynamic(() => import('@/components/ui/Footer'), {
+const Footer = dynamic(() => import('@/components/shared/Footer'), {
   loading: () => <div>Loading...</div>,
 })
 

@@ -1,8 +1,8 @@
 "use client"
 
-import Button from '@/components/ui/Button'
-import Paragraph from '@/components/ui/Paragraph'
-import Title from '@/components/ui/Title'
+import Button from '@/components/shared/Button'
+import Paragraph from '@/components/shared/Paragraph'
+import Title from '@/components/shared/Title'
 import useDeviceSize from '@/hooks/use-device-size'
 import Image from 'next/image'
 import React from 'react'

@@ -1,5 +1,5 @@
 import Hero from "./components/Hero";
-import BackdropBlur from "@/components/ui/BackdropBlur";
+import BackdropBlur from "@/components/shared/BackdropBlur";
 import { fetchProductById } from "@/lib/api";
 import dynamic from "next/dynamic";
 
