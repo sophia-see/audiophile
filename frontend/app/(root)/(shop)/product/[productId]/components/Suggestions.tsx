@@ -34,7 +34,7 @@ function ProductCard ({image, name, id}: ProductCardProps) {
       <div className='font-bold text-[24px] tracking-[1.71px] uppercase md:h-[72px] md:flex md:items-center'>
         {name}
       </div>
-      <Link href={toProductUrl(id, name)}>
+      <Link href={toProductUrl(id, name)} prefetch>
         <Button>See Product</Button>
       </Link>
     </div>

@@ -41,22 +41,16 @@ export default async function ProductPage({ params }: ProductPageProps) {
   return (
     <div className="mx-[24px] md:mx-[40px] lg:mx-lg-custom xl:mx-auto xl:max-w-[1100px] mt-[16px] md:mt-[33px] lg:mt-[79px]">
       <BackButton />
-      <Suspense fallback={<div>Loading Details...</div>}>
-        <MainDetails 
-          isNew={product.isNew}
-          title={product.title}
-          description={product.description}
-          price={product.price}
-          image={product.image}
-        />
-      </Suspense>
-      <Suspense fallback={<div>Loading Details...</div>}>
+      <MainDetails 
+        isNew={product.isNew}
+        title={product.title}
+        description={product.description}
+        price={product.price}
+        image={product.image}
+      />
+      <Suspense fallback={<div>Loading...</div>}>
         <OtherDetails features={product.features} inclusions={product.inclusions} />
-      </Suspense>
-      <Suspense fallback={<div>Loading Gallery...</div>}>
         <ProductGallery image={product.image} />
-      </Suspense>
-      <Suspense fallback={<div>Loading Suggestions...</div>}>
         <Suggestions products={suggestedProducts} />
       </Suspense>
       <Categories className='pt-[120px] pb-[120px] !mx-0 lg:pt-[160px] lg:pb-[160px] lg:mx-lg-custom' />

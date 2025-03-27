@@ -70,7 +70,7 @@ function ItemCard (props: ItemCardProps) {
         )}
         <Title text={title} />
         <Paragraph text={description} />
-        <Link href={toProductUrl(id, title)}>
+        <Link href={toProductUrl(id, title)} prefetch>
           <Button>
               See Product
           </Button>
