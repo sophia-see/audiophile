@@ -42,12 +42,12 @@ export default function ProductGallery({image}: ProductGalleryProps) {
         />
       </div>
       <div className='relative w-full h-[368px] lg:h-[592px] overflow-hidden rounded-[8px]'>
-          <Image 
-            src={image[currSize as keyof ProductImageType].gallery?.at(2) as string}
-            alt='Third image gallery'
-            className='object-cover object-center'
-            fill
-          />
+        <Image 
+          src={image[currSize as keyof ProductImageType].gallery?.at(2) as string}
+          alt='Third image gallery'
+          className='object-cover object-center'
+          fill
+        />
       </div>
     </div>
   )

@@ -3,6 +3,7 @@ import { fetchProductById } from '@/lib/api';
 import React from 'react'
 import MainDetails from './components/MainDetails';
 import dynamic from 'next/dynamic';
+import Categories from '@/components/Categories';
 
 interface ProductPageProps {
   params: Promise<{
@@ -33,7 +34,7 @@ export default async function ProductPage({params}: ProductPageProps) {
       className={`
         mx-[24px] md:mx-[40px] lg:mx-lg-custom xl:mx-auto 
         xl:max-w-[1100px]
-        mt-[16px] mb-[120px] md:mt-[33px] lg:mt-[79px]
+        mt-[16px] md:mt-[33px] lg:mt-[79px]
       `}
     >
       <BackButton />
@@ -47,6 +48,7 @@ export default async function ProductPage({params}: ProductPageProps) {
       <OtherDetails features={features} inclusions={inclusions} />
       <ProductGallery image={image}/>
       <Suggestions />
+      <Categories className='pt-[120px] pb-[120px] !mx-0 lg:pt-[160px] lg:pb-[160px] lg:mx-lg-custom'/>
     </div>
   )
 }
