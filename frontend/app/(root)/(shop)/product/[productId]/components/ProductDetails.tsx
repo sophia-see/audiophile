@@ -25,7 +25,7 @@ export default function ProductDetails(props: ProductDetailsProps) {
       {isNew && <NewProductBadge />}
       <div className='flex flex-col gap-6'>
         <Title text={title} />
-        <Paragraph text={description} />
+        <Paragraph text={description} className='opacity-50'/>
         <div className='font-bold text-[18px] tracking-[1.29px]'>$ {price.toLocaleString()}</div>
       </div>
     </div>

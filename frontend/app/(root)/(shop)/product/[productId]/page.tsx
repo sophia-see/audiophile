@@ -26,7 +26,7 @@ export default async function ProductPage({params}: ProductPageProps) {
   const productId = (await params).productId;
   const product = (await fetchProductById(parseInt(productId ?? ""))).data[0] as ProductType;
 
-  const { title, description, image, price, isNew } = product;
+  const { title, description, image, price, isNew, features, inclusions } = product;
   
   return (
     <div 
@@ -44,7 +44,7 @@ export default async function ProductPage({params}: ProductPageProps) {
         price={price}
         image={image}
       />
-      <OtherDetails />
+      <OtherDetails features={features} inclusions={inclusions} />
       <ProductGallery />
       <Suggestions />
     </div>

@@ -6,3 +6,7 @@ export const handleError = (error: unknown) => {
 export const toProductUrl = (id: number, title: string) => {
   return `/product/${id}_${title.replaceAll(" ", "-").toLowerCase()}`
 }
+
+export const toParagraph = (paragraph: string) => {
+  return paragraph.split("\n").filter(i => i)
+}
