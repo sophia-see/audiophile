@@ -1,5 +1,5 @@
 import BackButton from '@/components/ui/BackButton';
-import { fetchProductById } from '@/lib/api';
+import { fetchProductById, fetchRandomProductsExceptId } from '@/lib/api';
 import React from 'react'
 import MainDetails from './components/MainDetails';
 import dynamic from 'next/dynamic';
@@ -26,7 +26,7 @@ const Suggestions = dynamic(() => import("./components/Suggestions"), {
 export default async function ProductPage({params}: ProductPageProps) {
   const productId = (await params).productId;
   const product = (await fetchProductById(parseInt(productId ?? ""))).data[0] as ProductType;
-
+  const suggestedProducts = (await fetchRandomProductsExceptId(parseInt(productId ?? ""))).data as ProductType[]; 
   const { title, description, image, price, isNew, features, inclusions } = product;
   
   return (
@@ -47,7 +47,7 @@ export default async function ProductPage({params}: ProductPageProps) {
       />
       <OtherDetails features={features} inclusions={inclusions} />
       <ProductGallery image={image}/>
-      <Suggestions />
+      <Suggestions products={suggestedProducts}/>
       <Categories className='pt-[120px] pb-[120px] !mx-0 lg:pt-[160px] lg:pb-[160px] lg:mx-lg-custom'/>
     </div>
   )

@@ -31,3 +31,18 @@ export const fetchProductById = async (id: number) => {
     return null;
   }
 };
+
+export const fetchRandomProductsExceptId = async (id: number) => {
+  try {
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/products?populate=*&filters[id][$ne]=${id}&pagination[limit]=3`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("Failed to fetch products");
+
+    const data = await res.json();
+    console.log({data})
+    return data;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}

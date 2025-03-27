@@ -1,7 +1,62 @@
+"use client"
+
+import Button from '@/components/ui/Button';
+import Title from '@/components/ui/Title';
+import useDeviceSize from '@/hooks/use-device-size';
+import { toProductUrl } from '@/lib/utils';
+import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react'
 
-export default function Suggestions() {
+interface SuggestionsProps {
+  products: ProductType[];
+}
+
+interface ProductCardProps {
+  image: string;
+  name: string;
+  id: number;
+}
+
+function ProductCard ({image, name, id}: ProductCardProps) {
   return (
-    <div className='py-[120px]'>Suggestions</div>
+    <div className='flex flex-col gap-[32px] text-center items-center'>
+      <div className='w-full h-[120px] bg-gray overflow-hidden rounded-[8px] flex justify-center md:h-[318px] '>
+        <div className='relative w-[75px] h-full aspect-auto md:w-full md:px-[45px]'>
+          <Image
+            src={image}
+            alt={name}
+            fill
+            className='object-cover'
+          />
+        </div>
+      </div>
+      <div className='font-bold text-[24px] tracking-[1.71px] uppercase md:h-[72px] md:flex md:items-center'>
+        {name}
+      </div>
+      <Link href={toProductUrl(id, name)}>
+        <Button>See Product</Button>
+      </Link>
+    </div>
+  )
+}
+
+export default function Suggestions({products}: SuggestionsProps) {
+  const { currSize } = useDeviceSize();
+
+  return (
+    <div className='pt-[120px] flex flex-col gap-10 lg:pt-[160px]'>
+      <Title variant='subtitle' text="You may also like" className='text-center'/>
+      <div className='grid grid-cols-1 gap-[56px] md:grid-cols-3 md:gap-[11px] lg:gap-[30px]'>
+        {products.map((product) => (
+          <ProductCard 
+            key={product.id}
+            image={product.image[currSize as keyof ProductImageType].preview}
+            name={product.title}
+            id={product.id}
+          />
+        ))}
+      </div>
+    </div>
   )
 }
