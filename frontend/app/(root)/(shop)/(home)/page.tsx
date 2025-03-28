@@ -1,6 +1,6 @@
 import Hero from "./components/Hero";
 import BackdropBlur from "@/components/shared/BackdropBlur";
-import { fetchProductById } from "@/lib/api";
+import { fetchHomePageProductById } from "@/lib/api";
 import dynamic from "next/dynamic";
 
 const HERO_PRODUCT_ID = 21;
@@ -19,11 +19,11 @@ const Products = dynamic(() => import("./components/Products"), {
 })
 
 export default async function Home() {
-  const heroProduct = (await fetchProductById(HERO_PRODUCT_ID)).data[0];
+  const heroProduct = (await fetchHomePageProductById(HERO_PRODUCT_ID)).data[0];
 
   const featuredProducts = await Promise.all(
     FEATURED_PRODUCTS_ID.map(async (id) => 
-      (await fetchProductById(id)).data[0])
+      (await fetchHomePageProductById(id)).data[0])
   ) ?? [];
 
   return (
