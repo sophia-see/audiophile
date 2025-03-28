@@ -7,7 +7,7 @@ export enum CategoryType {
 
 export const fetchProducts = async (type: CategoryType) => {
   try {
-    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/products?populate=*&filters[category][$eq]=${type}&sort=updatedAt:desc&sort=createdAt:desc`
+    const url = `${process.env.NEXT_PUBLIC_API_URL}/api/products?fields[0]=id&fields[1]=title&fields[2]=image&fields[3]=description&filters[category][$eq]=${type}&sort=updatedAt:desc&sort=createdAt:desc`
     const res = await fetch(url, {
       // next: { revalidate: 60 }, // Cache for 1 min
     });
