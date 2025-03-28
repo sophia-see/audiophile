@@ -1,11 +1,14 @@
-import { fetchProductById } from '@/lib/api';
+"use client"
+
 import dynamic from 'next/dynamic';
 import React from 'react'
 import MainDetails from './MainDetails';
 import OtherDetails from './OtherDetails';
+import { useProductById } from '@/hooks/useProducts';
 
 interface ProductDetailsProps {
-  params: Promise<{ productId: string }>;
+  id: number; 
+  initialData: ProductType;
 }
 
 
@@ -13,20 +16,18 @@ const ProductGallery = dynamic(() => import("./ProductGallery"), {
   loading: () => <div>Loading Gallery...</div>,
 });
 
-export default async function ProductDetails({ params }: ProductDetailsProps) {
-  const productId = parseInt((await params).productId);
+export default function ProductDetails({ id, initialData }: ProductDetailsProps) {
+  const { data, isLoading } = useProductById(id, initialData);
+
   
-  if (isNaN(productId)) {
+  if (isLoading)
+    return <div>Loading...</div>
+  
+  if (!data) {
     return <div>Product not found</div>;
   }
-
-  const productRes = await fetchProductById(productId);
-
-  if (!productRes?.data?.length) {
-    return <div>Product not found</div>;
-  }
-
-  const product = productRes.data[0] as ProductType;
+  
+  const product = data[0];
 
   return (
     <>

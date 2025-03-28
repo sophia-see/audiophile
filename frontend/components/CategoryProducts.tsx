@@ -7,9 +7,9 @@ interface CategoryPageProps {
 }
 
 export default async function CategoryProducts({category}: CategoryPageProps) {
-  const products = (await fetchProducts(CategoryType[category as CategoryType])).data as ProductType[];
+  const products = (await fetchProducts(CategoryType[category as CategoryType])) as ProductType[];
   
   return (
-      <Products items={products}/>
+    <Products categoryType={category as CategoryType} items={products}/>
   )
 }

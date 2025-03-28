@@ -3,6 +3,7 @@ import { Manrope } from "next/font/google";
 import "./globals.css";
 import { AppProvider } from "@/contexts/AppContext";
 import { ClerkProvider } from "@clerk/nextjs";
+import QueryProvider from "@/components/QueryProvider";
 
 const manrope = Manrope({
   subsets: ["latin"],
@@ -24,9 +25,11 @@ export default function RootLayout({
         <body
           className={`${manrope.className} antialiased`}
         >
-          <AppProvider>
-            {children}
-          </AppProvider>
+          <QueryProvider>
+            <AppProvider>
+              {children}
+            </AppProvider>
+          </QueryProvider>
         </body>
       </html>
     </ClerkProvider>

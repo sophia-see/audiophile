@@ -3,17 +3,27 @@
 import React from 'react'
 import useDeviceSize from '@/hooks/use-device-size';
 import ItemCard from './ItemCard';
+import { useProductsByCategory } from '@/hooks/useProducts';
+import { CategoryType } from '@/lib/api';
 
 interface ProductsProps {
+  categoryType: CategoryType;
   items: ProductType[];
 }
 
-export default function Products({items}: ProductsProps) {
+export default function Products({categoryType, items: initialData}: ProductsProps) {
+  const { data, isLoading } = useProductsByCategory(categoryType, initialData);
   const { currSize } = useDeviceSize();
+
+  if (isLoading)
+    return <div>Loading Products...</div>
+
+  if (data.length == 0)
+    return <div>No data found</div>
   
   return (
     <div className='mt-[64px] mx-[24px] flex flex-col gap-[120px] md:mx-[40px] md:mt-[120px] lg:mt-[160px] lg:mx-lg-custom xl:max-w-[1100px] xl:mx-auto'>
-      {items.map((item, index) => (
+      {(data as ProductType[]).map((item, index) => (
         <ItemCard 
           key={item.title} 
           id={item.id}

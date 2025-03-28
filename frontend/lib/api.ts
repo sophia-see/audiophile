@@ -14,7 +14,7 @@ export const fetchProducts = async (type: CategoryType) => {
     if (!res.ok) throw new Error("Failed to fetch products");
 
     const data = await res.json();
-    return data;
+    return data.data;
   } catch (error) {
     console.error(error);
     return null;
@@ -47,7 +47,7 @@ export const fetchProductById = async (id: number) => {
     if (!res.ok) throw new Error("Failed to fetch products");
 
     const data = await res.json();
-    return data;
+    return data.data;
   } catch (error) {
     console.error(error);
     return null;

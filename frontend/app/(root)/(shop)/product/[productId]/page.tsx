@@ -2,9 +2,9 @@ import BackButton from '@/components/shared/BackButton';
 import React, { Suspense } from 'react';
 import Categories from '@/components/Categories';
 import ProductDetailsSkeleton from './components/skeletons/ProductDetailsSkeleton';
-import ProductDetails from './components/ProductDetails';
 import SuggestedProductsSkeleton from './components/skeletons/SuggestedProductsSkeleton';
 import Suggestions from './components/Suggestions';
+import Product from './components/Product';
 
 interface ProductPageProps {
   params: Promise<{ productId: string }>;
@@ -19,7 +19,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       
       {/* Render UI immediately while data is loading */}
       <Suspense fallback={<ProductDetailsSkeleton />}>
-        <ProductDetails params={params} />
+        <Product params={params} />
       </Suspense>
       
       <Suspense fallback={<SuggestedProductsSkeleton />}>
