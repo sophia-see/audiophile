@@ -7,8 +7,11 @@ interface SuggestionsProps {
 }
 
 export default async function Suggestions({productId}: SuggestionsProps) {
-  const suggestedProductsRes = await fetchRandomProductsExceptId(productId);
-  const suggestedProducts = suggestedProductsRes as ProductType[];
+  const suggestedProducts = (await fetchRandomProductsExceptId(productId)) as ProductType[];
+
+  if (!suggestedProducts || suggestedProducts?.length == 0) {
+    return;
+  }
   
   return (
     <SuggestedProducts products={suggestedProducts} />

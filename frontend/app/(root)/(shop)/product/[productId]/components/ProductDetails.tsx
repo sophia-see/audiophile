@@ -5,6 +5,8 @@ import React from 'react'
 import MainDetails from './MainDetails';
 import OtherDetails from './OtherDetails';
 import { useProductById } from '@/hooks/useProducts';
+import NoDataFound from '@/components/error/NoDataFound';
+import ProductDetailsSkeleton from './skeletons/ProductDetailsSkeleton';
 
 interface ProductDetailsProps {
   id: number; 
@@ -21,13 +23,13 @@ export default function ProductDetails({ id, initialData }: ProductDetailsProps)
 
   
   if (isLoading)
-    return <div>Loading...</div>
+    return <ProductDetailsSkeleton />
   
-  if (!data) {
-    return <div>Product not found</div>;
+  if (!data || data.length == 0) {
+    return <NoDataFound />;
   }
   
-  const product = data[0];
+  const product = data[0] as ProductType;
 
   return (
     <>

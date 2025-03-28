@@ -16,7 +16,7 @@ export const fetchProducts = async (type: CategoryType) => {
     const data = await res.json();
     return data.data;
   } catch (error) {
-    console.error(error);
+    console.log(error);
     return null;
   }
 };
@@ -32,7 +32,7 @@ export const fetchHomePageProductById = async (id: number) => {
     const data = await res.json();
     return data;
   } catch (error) {
-    console.error(error);
+    console.log(error);
     return null;
   }
 };
@@ -49,7 +49,7 @@ export const fetchProductById = async (id: number) => {
     const data = await res.json();
     return data.data;
   } catch (error) {
-    console.error(error);
+    console.log(error);
     return null;
   }
 };
@@ -69,7 +69,7 @@ export const fetchRandomProductsExceptId = async (id: number) => {
     const shuffled = data.data.sort(() => 0.5 - Math.random());
     return shuffled.slice(0, 3);
   } catch (error) {
-    console.error(error);
+    console.log(error);
     return null;
   }
 }
