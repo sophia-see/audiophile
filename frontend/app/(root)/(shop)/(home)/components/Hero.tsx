@@ -23,19 +23,26 @@ interface HeroProps {
 
 export default function Hero({product}: HeroProps) {
   const { currSize } = useDeviceSize();
+  const [showImage, setShowImage] = React.useState(false);
+
+  // delay show image to avoid sudden shift of image size (let currsize finalize first)
+  React.useEffect(() => {
+    const timeout = setTimeout(() => setShowImage(true), 100);
+    return () => clearTimeout(timeout);
+  }, []);
 
   const featuredProduct = product ?? FEATURED_PRODUCT;
 
   return (
     <section className="flex justify-center lg:justify-start xl:max-w-[1100px] xl:mx-auto h-[calc(700px-90px)] md:h-[calc(729px-90px)]">
       <div className='bg-[#191919] brightness-[65%] w-full h-[700px] absolute left-0 right-0 top-[-100px] -z-10 md:h-[729px]'>
-        <Image
+        {showImage && <Image
           src={`/assets/home/${currSize}/${FEATURED_PRODUCT.image}`}
           alt='black headphones'
           fill
           className='object-cover object-center mix-blend-normal xl:mx-auto xl:max-w-[1440px]'
           priority
-        />
+        />}
       </div>
       <div 
         className={`
